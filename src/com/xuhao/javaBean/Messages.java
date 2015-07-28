@@ -12,12 +12,6 @@ public class Messages extends BmobObject{
     public void setContent(String content) {
         this.content = content;
     }
-    public Teacher getTeacher() {
-        return teacher;
-    }
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
     public BmobDate getRelease_date() {
         return release_date;
     }
@@ -37,7 +31,6 @@ public class Messages extends BmobObject{
         this.group = group;
     }
     
-    private Teacher teacher;
     private BmobDate release_date ;
     private BmobDate  execute_Date;
     private Group group;

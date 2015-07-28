@@ -38,9 +38,6 @@ public class MainActivity extends Activity {
 	//为跳转按钮添加监听
 	jumpbButton.setOnClickListener(new jumpMonitor());
 	getStudents();
-	//向outputtext输出
-	
-
     }
 
     @Override
@@ -66,30 +63,7 @@ public class MainActivity extends Activity {
 	String sqlString = "select * from Student";
 	BmobQuery<Student> query = new BmobQuery<Student>();
 	query.doSQLQuery(MainActivity.this,sqlString,new sqlMonitor());
-		
-//		new SQLQueryListener<Student>(){
-//
-//	    @Override
-//	    public void done(BmobQueryResult<Student> result, BmobException e) {
-//		System.out.println("done 方法");
-//	        if(e ==null){
-//	            stu_list= (List<Student>) result.getResults();
-//	            System.out.println("查询成功");
-//	            if(stu_list!=null && stu_list.size()>0){
-//	        	Iterator<Student> iterator = stu_list.iterator();
-//	        	while (iterator.hasNext()) {
-//	        	    Student s = iterator.next();
-//	        	    outputText.append(s.getName());
-//	        	}
-//	            }else{
-//	                System.out.println("smile"+"查询成功，无数据返回");
-//	            }
-//	        }else{
-//	            System.out.print("smile"+ "错误码："+e.getErrorCode()+"+错误描述："+e.getMessage());
-//	        }
-//	    }
-//	});
-	
+
     }
     private void showToast(String s){
 	Toast toast = Toast.makeText(this, s, Toast.LENGTH_LONG);
@@ -102,7 +76,7 @@ public class MainActivity extends Activity {
 	public void onClick(View v) {
 	    System.out.println("Commit button was pressed");
 	    Intent nextActivity = new Intent(MainActivity.this,
-		    SecondActivity.class);
+		    QQActivity.class);
 	    startActivity(nextActivity);
 
 	}

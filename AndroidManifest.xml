@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SecondActivity"
+            android:name=".QQActivity"
             android:label="@string/title_activity_second" >
         </activity>
     </application>
