@@ -2,9 +2,13 @@ package com.example.androidtestproject;
 
 import cn.bmob.v3.Bmob;
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainActivity extends Activity {
@@ -15,7 +19,8 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		Bmob.initialize(this, "6fd393e552ed1d8dc51dbccf1236cc32");
 		Button commitButton = (Button)findViewById(R.id.button1);
-		
+		Button jumpbButton = (Button)findViewById(R.id.button2);
+		jumpbButton.setOnClickListener(new jumpMonitor());
 	}
 
 	@Override
@@ -34,5 +39,18 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	
+	class jumpMonitor implements OnClickListener{
+
+	    @Override
+	    public void onClick(View v) {
+System.out.println("Commit button was pressed");
+		Intent nextActivity = new Intent(MainActivity.this,SecondActivity.class);
+		startActivity(nextActivity);
+		
+	    }
+	    
 	}
 }
