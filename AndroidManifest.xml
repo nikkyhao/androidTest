@@ -31,7 +31,34 @@
         <activity
             android:name=".QQActivity"
             android:label="@string/title_activity_second" >
+             <intent-filter>
+                <action android:name="android.intent.action.QQ" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1104708623" />
+            </intent-filter>
         </activity>
+        
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1104708623" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.tencent.connect.common.AssistActivity"
+android:theme="@android:style/Theme.Translucent.NoTitleBar"
+android:configChanges="orientation|keyboardHidden|screenSize" 
+/>
     </application>
 
 </manifest>
