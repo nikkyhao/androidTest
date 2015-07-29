@@ -27,10 +27,13 @@ public final class R {
     public static final class id {
         public static final int QQLogButton=0x7f080005;
         public static final int QQimage=0x7f080004;
-        public static final int action_settings=0x7f080006;
+        public static final int action_settings=0x7f080009;
         public static final int button1=0x7f080000;
         public static final int button2=0x7f080003;
+        public static final int gender=0x7f080008;
         public static final int inputText=0x7f080001;
+        public static final int nickname=0x7f080007;
+        public static final int openid=0x7f080006;
         public static final int outputText=0x7f080002;
     }
     public static final class layout {

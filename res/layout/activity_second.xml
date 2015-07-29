@@ -17,5 +17,23 @@
         android:text="LogIn" 
         android:onClick="LogIn"
         />
+<TextView 
+    android:id="@+id/openid"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="openid"
+    />
+<TextView 
+    android:id="@+id/nickname"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="nickname"
+    />
 
+<TextView 
+    android:id="@+id/gender"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="gender"
+    />
 </LinearLayout>
