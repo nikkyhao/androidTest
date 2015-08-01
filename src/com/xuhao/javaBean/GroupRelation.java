@@ -4,19 +4,18 @@ import cn.bmob.v3.BmobObject;
 
 public class GroupRelation extends BmobObject{
 
-   
-    public User getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
-    public Group getGroup() {
-        return group;
+    public String getGroupId() {
+        return groupId;
     }
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
-    private User user;
-    private Group group;
+    private String userId;
+    private String groupId;
 }

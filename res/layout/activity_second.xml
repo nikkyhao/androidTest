@@ -14,26 +14,35 @@
         android:id="@+id/QQLogButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LogIn" 
         android:onClick="LogIn"
-        />
-<TextView 
-    android:id="@+id/openid"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="openid"
-    />
-<TextView 
-    android:id="@+id/nickname"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="nickname"
-    />
+        android:text="LogIn" />
 
-<TextView 
-    android:id="@+id/gender"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="gender"
-    />
+    <TextView
+        android:id="@+id/openid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="openid" />
+
+    <TextView
+        android:id="@+id/nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nickname" />
+
+    <TextView
+        android:id="@+id/gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="gender" />
+
+    <Button
+        android:id="@+id/button1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="264dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.53"
+        android:text="NextActivity" 
+        android:onClick="jumpToNext"
+        />
+
 </LinearLayout>

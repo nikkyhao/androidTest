@@ -7,13 +7,15 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="22" />
-	<uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_LOGS"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -31,7 +33,7 @@
         <activity
             android:name=".QQActivity"
             android:label="@string/title_activity_second" >
-             <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.QQ" />
 
                 <category android:name="android.intent.category.DEFAULT" />
@@ -40,7 +42,6 @@
                 <data android:scheme="tencent1104708623" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
@@ -54,11 +55,14 @@
                 <data android:scheme="tencent1104708623" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.tencent.connect.common.AssistActivity"
-android:theme="@android:style/Theme.Translucent.NoTitleBar"
-android:configChanges="orientation|keyboardHidden|screenSize" 
-/>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".UserListActivity"
+            android:label="@string/title_activity_user_list" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,21 +1,24 @@
 package com.xuhao.javaBean;
 
 import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.datatype.BmobPointer;
+import cn.bmob.v3.datatype.BmobRelation;
 
 public class FriendRelation extends BmobObject{
 
-    public User getUser() {
-        return user;
+    
+    public String getFriendname() {
+        return friendname;
     }
-    public void setUser(User user) {
-        this.user = user;
+    public void setFriendname(String friendname) {
+        this.friendname = friendname;
     }
-    public User getFriendUser() {
-        return friendUser;
+    public String getUsername() {
+        return username;
     }
-    public void setFriendUser(User friendUser) {
-        this.friendUser = friendUser;
+    public void setUsername(String username) {
+        this.username = username;
     }
-    private User user;
-    private User friendUser;
+    private String username;
+    private String friendname;
 }
