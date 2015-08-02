@@ -32,6 +32,8 @@ public class MainActivity extends Activity {
     List<User> stu_list = null;
     EditText outputText = null;
     EditText inputText = null;
+    EditText usernameText = null;
+    EditText passwordText = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
@@ -40,6 +42,11 @@ public class MainActivity extends Activity {
 	//获得组件
 	inputText = (EditText)findViewById(R.id.inputText);
 	outputText = (EditText) findViewById(R.id.outputText);
+	
+	usernameText = (EditText)findViewById(R.id.username);
+	passwordText = (EditText)findViewById(R.id.password);
+	
+	
 	Button commitButton = (Button) findViewById(R.id.button1);
 	Button jumpbButton = (Button) findViewById(R.id.button2);
 	//为跳转按钮添加监听
@@ -71,14 +78,15 @@ public class MainActivity extends Activity {
 		showToast("查询成功");
 		stu_list = (List<User>) result.getResults();
 		if(stu_list!=null && stu_list.size()>0){//查询成功，返回结果不空
-		    Iterator<User> iterator = stu_list.iterator();
-		    while (iterator.hasNext()) {
-			User s = iterator.next();
-			outputText.append(s.getObjectId()+s.getUserName());
-			}
+//		    Iterator<User> iterator = stu_list.iterator();
+//		    while (iterator.hasNext()) {
+//			User s = iterator.next();
+//			outputText.append(s.getObjectId()+s.getUserName());
+//			}
+		    showToast("登录成功");
 		}
 		else {//查询成功，返回结果为空
-		    showToast("查询成功，结果为空");
+		    showToast("用户名或密码错误");
 		}
 	    }
 	    else {//查询失败，出现异常
@@ -106,5 +114,13 @@ public class MainActivity extends Activity {
 	});
     }
     
+    public void Validate(View source){
+	String usernameString = usernameText.getText().toString();
+	String passwordString = passwordText.getText().toString();
+	String sqlString = "select * from User where username = '"+usernameString+"' and password = '"+passwordString+"' ";
+	BmobQuery<User> query = new BmobQuery<User>();
+	query.doSQLQuery(this,sqlString, new sqlListener());
+	
+    }
     }
 

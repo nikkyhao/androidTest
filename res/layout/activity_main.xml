@@ -9,23 +9,25 @@
         android:id="@+id/button1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Commit" />
+        android:text="Commit" 
+        android:onClick="Validate"
+        />
 
     <EditText
-        android:id="@+id/EditText01"
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:text="ID" />
+        android:text="用户名" />
 
     <EditText
-        android:id="@+id/EditText02"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:text="input" />
+        android:text="密码" />
 
     <EditText
         android:id="@+id/inputText"
