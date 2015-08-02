@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
-	setContentView(R.layout.activity_main);
+	setContentView(R.layout.activity_main_2);
 	Bmob.initialize(this, "6fd393e552ed1d8dc51dbccf1236cc32");
 	//获得组件
 	inputText = (EditText)findViewById(R.id.inputText);

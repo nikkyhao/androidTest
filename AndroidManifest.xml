@@ -25,14 +25,14 @@
             android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN_second" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".QQActivity"
-            android:label="@string/title_activity_second" >
+            android:label="QQ" >
             <intent-filter>
                 <action android:name="android.intent.action.QQ" />
 
@@ -61,8 +61,31 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".UserListActivity"
-            android:label="@string/title_activity_user_list" >
+            android:label="UserList" >
         </activity>
+        
+        
+        
+        <!-- 蕫景磊写的界面 -->
+            <activity
+            android:name="com.xuhao.activity.MainActivity"
+            android:label="@string/app_name"
+            
+             >
+        </activity>
+        <activity
+            android:name="com.xuhao.activity.LoginActivity">
+
+        </activity>
+        <activity
+            android:name="com.xuhao.activity.WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
     </application>
 
 </manifest>

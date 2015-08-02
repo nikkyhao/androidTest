@@ -1,72 +1,62 @@
-<LinearLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-	android:orientation="vertical">
+    android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Commit" 
-        android:onClick="Validate"
-        />
-
-    <EditText
-        android:id="@+id/username"
+    <LinearLayout
+        android:id="@+id/buttom_bar_group"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:text="用户名" />
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <RelativeLayout style="@style/ButtomBar">
 
-    <EditText
-        android:id="@+id/password"
+            <ImageButton
+                android:id="@+id/buttom_setting"
+                style="@style/ButtomBarImgBtn"
+                android:background="@drawable/bar_setting"
+                android:contentDescription="@string/app_name" />
+        </RelativeLayout>
+        <RelativeLayout style="@style/ButtomBar" >
+
+            <ImageButton
+                android:id="@+id/buttom_constact"
+                style="@style/ButtomBarImgBtn"
+                android:background="@drawable/bar_constact"
+                android:contentDescription="@string/app_name" />
+        </RelativeLayout>
+        <RelativeLayout style="@style/ButtomBar" >
+
+            <ImageButton
+                android:id="@+id/buttom_news"
+                style="@style/ButtomBarImgBtn"
+                android:background="@drawable/bar_news"
+                android:contentDescription="@string/app_name" />
+        </RelativeLayout>
+        <RelativeLayout style="@style/ButtomBar" >
+
+            <ImageButton
+                android:id="@+id/buttom_deynaimic"
+                style="@style/ButtomBarImgBtn"
+                android:background="@drawable/bar_deynaimic"
+                android:contentDescription="@string/app_name" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:text="密码" />
+        android:layout_height="0.5dp"
+        android:layout_above="@id/buttom_bar_group"
+        android:background="@color/devide_line" />
 
-    <EditText
-        android:id="@+id/inputText"
+    <FrameLayout
+        android:id="@+id/fl_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textMultiLine" 
-        android:text="input"
-        />
-    
-    <EditText
-        android:id="@+id/outputText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textMultiLine" 
-        android:text="output"
-        />
+        android:layout_height="match_parent"
+        android:layout_above="@id/line" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="NextActivity" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update" 
-        android:onClick="addFriendRelation"
-        />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" 
-        android:onClick="showFriendRelation"
-        />
-
-</LinearLayout>
+</RelativeLayout>
