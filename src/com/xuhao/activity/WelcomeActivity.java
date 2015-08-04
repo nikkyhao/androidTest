@@ -3,11 +3,13 @@ package com.xuhao.activity;
 
 
 import com.example.androidtestproject.R;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.ImageView;
 
 public class WelcomeActivity extends Activity {
@@ -19,6 +21,7 @@ public class WelcomeActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.activity_welcome);
 		mContext = this;
 		findView();

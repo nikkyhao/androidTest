@@ -1,5 +1,5 @@
 /**
- * 文件名：User.java
+ * 文件名：User_other.java
  * 时间：2015年5月9日上午10:23:19
  * 作者：修维康
  */
@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * 类名：User 说明：用户对象
+ * 类名：User_other 说明：用户对象
  */
-public class User implements Serializable {
+public class User_other implements Serializable {
 
 	/**
 	 * 
@@ -22,7 +22,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String account;
-	private String userName;
+	private String User_otherName;
 	private String password;
 	private Date birthday;
 	private int gender; // 0代表女生 1代表男生
@@ -31,14 +31,14 @@ public class User implements Serializable {
 	private byte[] photo;
 	private Bitmap  head_photo;
 	private int age;
-	private String userBriefIntro;
+	private String User_otherBriefIntro;
 
-	public String getUserBriefIntro() {
-		return userBriefIntro;
+	public String getUser_otherBriefIntro() {
+		return User_otherBriefIntro;
 	}
 
-	public void setUserBriefIntro(String userBriefIntro) {
-		this.userBriefIntro = userBriefIntro;
+	public void setUser_otherBriefIntro(String User_otherBriefIntro) {
+		this.User_otherBriefIntro = User_otherBriefIntro;
 	}
 
 	public int getAge() {
@@ -49,32 +49,32 @@ public class User implements Serializable {
 		this.age = age;
 	}
 
-	private ArrayList<User> friendList;
+	private ArrayList<User_other> friendList;
 
-	public ArrayList<User> getFriendList() {
+	public ArrayList<User_other> getFriendList() {
 		return friendList;
 	}
 
-	public void setFriendList(ArrayList<User> friendList) {
+	public void setFriendList(ArrayList<User_other> friendList) {
 		this.friendList = friendList;
 	}
 
-	public User(String account, String username, String password,
+	public User_other(String account, String User_othername, String password,
 			Date birthday, int gender, byte[] photo) {
 		this.account = account;
-		this.userName = username;
+		this.User_otherName = User_othername;
 		this.password = password;
 		this.birthday = birthday;
 		this.gender = gender;
 		this.photo = photo;
 	}
-	public User( String username, String userBriefIntro) {
+	public User_other( String User_othername, String User_otherBriefIntro) {
 
-		this.userName = username;
-		this.userBriefIntro = userBriefIntro;
+		this.User_otherName = User_othername;
+		this.User_otherBriefIntro = User_otherBriefIntro;
 	}
 
-	public User() {
+	public User_other() {
 
 	}
 
@@ -106,12 +106,12 @@ public class User implements Serializable {
 		this.account = account;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUser_otherName() {
+		return User_otherName;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUser_otherName(String User_otherName) {
+		this.User_otherName = User_otherName;
 	}
 
 	public String getPassword() {
@@ -156,8 +156,8 @@ public class User implements Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		User user = (User) o;
-		if (this.id == user.getId())
+		User_other User_other = (User_other) o;
+		if (this.id == User_other.getId())
 			return true;
 		return false;
 	}

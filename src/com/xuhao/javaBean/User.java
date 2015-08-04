@@ -85,6 +85,13 @@ public class User extends BmobObject{
     private String major;
     private String gender;
     private String identity;
+    private String description;
     private BmobFile portrait;
     private BmobRelation friendRelation;
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
