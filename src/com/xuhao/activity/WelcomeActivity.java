@@ -2,6 +2,8 @@ package com.xuhao.activity;
 
 
 
+import cn.bmob.v3.Bmob;
+
 import com.example.androidtestproject.R;
 
 import android.app.Activity;

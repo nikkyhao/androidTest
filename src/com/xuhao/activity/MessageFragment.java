@@ -55,17 +55,17 @@ public class MessageFragment extends Fragment {
         //设置标题栏
         mTitleBarView.setCommonTitle(View.GONE, View.VISIBLE, View.GONE);
         mTitleBarView.setTitleText("消息");
-        //
+        
         mMessageEntityList=new ArrayList<MessageTabEntity>();
 
         mMessageEntityList.add(new MessageTabEntity("徐豪","我睡了周强女友，你别跟他说","2015-8-1"));
         mMessageEntityList.add(new MessageTabEntity("周强","徐豪是不是睡了我女友","2015-8-1"));
         mMessageEntityList.add(new MessageTabEntity("张凯强","我看到徐豪睡了周强女友","2015-8-1"));
 
+        
         adapter = new FriendMessageAdapter(mContext, mMessageEntityList);
         mMessageListView.setAdapter(adapter);
-        mMessageListView
-                .setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mMessageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
@@ -123,7 +123,7 @@ public class MessageFragment extends Fragment {
             String sendTime = message.getSendTime();
             int unReadCount = message.getUnReadCount();
             String content = message.getContent();
-            convertView = mInflater.inflate(R.layout.fragment_message_item, null);
+            convertView = mInflater.inflate(R.layout.fragment_message_item,null);
             avatarView = (ImageView) convertView.findViewById(R.id.user_photo);
             nameView = (TextView) convertView.findViewById(R.id.user_name);
             contentView = (TextView) convertView.findViewById(R.id.user_message);

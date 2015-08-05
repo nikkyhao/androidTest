@@ -45,6 +45,8 @@ public class FriendListFragment extends Fragment{
     private TitleBarView mTitleBarView;
     private ListView mFriendListView;
     private List<User> mFriendList;
+    //全局Application
+    MyApplication mApplication = null;
     final Handler handler = new Handler(){
   	@Override
   	public void handleMessage(Message msg){
@@ -84,6 +86,7 @@ public class FriendListFragment extends Fragment{
         mTitleBarView.setTitleText("好友");
         mTitleBarView.setBtnLeft(R.string.control);//设置左上角的按钮 “管理”
         mTitleBarView.setBtnRight(R.drawable.qq_constact);//设置右上角的按钮"添加"
+        mApplication = (MyApplication)(getActivity().getApplication());
         getFriendRelation();
 //        //设置联系人
 //        mFriendList.add(new User("徐豪","这是一个逗比"));
@@ -99,7 +102,7 @@ public class FriendListFragment extends Fragment{
             this.mFriendList = vector;
             this.bmplist = bmplist;
             mInflater = LayoutInflater.from(context);
-            System.out.println("��ʼ��FriendAdapter");
+            System.out.println("FriendAdapter");
         }
         public int getCount() {
             return mFriendList.size();
@@ -154,6 +157,7 @@ public class FriendListFragment extends Fragment{
    	    if(e==null){//查询成功
    		showToast("查询成功");
    		mFriendList = (List<User>) result.getResults();
+   		mApplication.setFriendList(mFriendList);
    		if(mFriendList!=null && mFriendList.size()>0){//查询成功，返回结果不空
    		    showToast("查询成功");
    		 Message message = new Message();
@@ -194,13 +198,12 @@ public class FriendListFragment extends Fragment{
     }
     public void getFriendRelation(){
 	//这里的xuhao以后要换成用户的用户名
-	String sqlString = "select * from User where username in (select friendname from FriendRelation where username = 'xuhao')";
+	String sqlString = "select * from User where username in (select friendname from FriendRelation where username = '"+mApplication.getPresentUser().getUserName()+"')";
 	BmobQuery<User> query = new BmobQuery<User>();
 	query.doSQLQuery(mContext,sqlString, new sqlListener());
     }
     
     public static Bitmap getBitmap(String path) {
-
 	    URL url = null;
 	    try {
 		url = new URL(path);
