@@ -24,16 +24,14 @@ public class Messages extends BmobObject{
     public void setExecute_Date(BmobDate execute_Date) {
         this.execute_Date = execute_Date;
     }
-    public Group getGroup() {
-        return group;
+    public String getGroupId() {
+    	return groupId;
     }
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setGroupId(String groupId) {
+    	this.groupId = groupId;
     }
-    
     private BmobDate release_date ;
     private BmobDate  execute_Date;
-    private Group group;
     private String content;
-
+    private String groupId;
 }

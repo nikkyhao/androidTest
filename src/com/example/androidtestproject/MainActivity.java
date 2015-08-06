@@ -52,6 +52,7 @@ public class MainActivity extends Activity {
 	jumpbButton.setOnClickListener(new jumpMonitor());
     }
 
+    
     public void showToast(String s){
 	Toast toast = Toast.makeText(this, s, Toast.LENGTH_LONG);
 	toast.show();

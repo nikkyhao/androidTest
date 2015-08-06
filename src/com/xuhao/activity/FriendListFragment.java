@@ -151,7 +151,7 @@ public class FriendListFragment extends Fragment{
         }
     }
 
-    class sqlListener extends SQLQueryListener<User> {
+    private class sqlListener extends SQLQueryListener<User> {
    	@Override
    	public void done(BmobQueryResult<User> result, BmobException e) {
    	    if(e==null){//查询成功

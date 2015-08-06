@@ -4,11 +4,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <Button
+        android:id="@+id/addGroupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加分组" 
+        />
+
+ <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
     <com.xuhao.activity.TitleBarView
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" >
+    </com.xuhao.activity.TitleBarView>
 
+</LinearLayout>
     <ListView
         android:id="@+id/message_list_listview"
         android:layout_width="match_parent"
