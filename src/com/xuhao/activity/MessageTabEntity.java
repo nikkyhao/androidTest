@@ -16,10 +16,18 @@ public class MessageTabEntity {
 	private int messageType;
 	private String sendTime;
 	private String name;
-    public MessageTabEntity(String name,String content,String sendTime){
+	private String groupId;
+    public String getGroupId() {
+		return groupId;
+	}
+	public void setGroupId(String groupIdString) {
+		this.groupId = groupIdString;
+	}
+	public MessageTabEntity(String name,String content,String sendTime,String groupId){
 		this.name=name;
 		this.content=content;
 		this.sendTime=sendTime;
+		this.groupId = groupId;
 	}
 	public String getName() {
 		return name;

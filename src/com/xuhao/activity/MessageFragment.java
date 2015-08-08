@@ -96,9 +96,6 @@ public class MessageFragment extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
                     	showToast("item:"+position+"was clicked");
-                    	if(position == 0){
-                    		findMessageOfGroup("c22cf134a3");
-                    	}
                         chooseMessageEntity = mMessageEntityList.get(position);
                         chooseMessageEntity.setUnReadCount(0);
                         adapter.notifyDataSetChanged();
@@ -107,6 +104,7 @@ public class MessageFragment extends Fragment {
                         Intent intent = new Intent(mContext, ChatActivity.class);
                         intent.putExtra("friendName", chooseMessageEntity.getName());
                         intent.putExtra("friendId", chooseMessageEntity.getSenderId());
+                        intent.putExtra("groupId", chooseMessageEntity.getGroupId());
                         startActivity(intent);
                         
                         //并不知道下面这些是判断什么的。。
@@ -214,7 +212,7 @@ public class MessageFragment extends Fragment {
        		 mMessageEntityList=new ArrayList<MessageTabEntity>();
        		 for(int i =0;i<grouplist.size();i++){
        			 Group current=grouplist.get(i);
-       			 mMessageEntityList.add(new MessageTabEntity(current.getName(),current.getName(),current.getCreatedAt()));
+       			 mMessageEntityList.add(new MessageTabEntity(current.getName(),current.getName(),current.getCreatedAt(),current.getObjectId()));
        		 	}
        		 adapter = new FriendMessageAdapter(mContext, mMessageEntityList);
              mMessageListView.setAdapter(adapter);
@@ -228,41 +226,15 @@ public class MessageFragment extends Fragment {
        	    }
        	    }}
     
-    List<Messages> messageList;
-    private class messageListListener extends SQLQueryListener<Messages>{
-		@Override
-		public void done(BmobQueryResult<Messages> result, BmobException e) {
-			  if(e==null){//查询成功
-		       		messageList = result.getResults();
-		       		if(messageList!=null && messageList.size()>0){//查询成功，结果不为空
-		       			showToast("Message查询成功，结果不为空");
-		       			for(int i = 0;i<messageList.size();i++){
-		           			Log.d("messagelist", messageList.get(i).getContent());
-		           			}
-		       		}
-		       		else {//查询成功，返回结果为空
-		       		    showToast("查询成功，返回结果为空");
-		       		}
-		       	    }
-		       	    else {//查询失败，出现异常
-		       		showToast("错误码:"+e.getErrorCode()+"错误描述"+e.getMessage());
-		       	    }
-			
-		}
-    	
-    }
+    
+    
     public void getGroupList(){
     	//对应当前用户的分组一一列出
     	String sqlString = "select * from Group where objectId in (select groupId from GroupRelation where userId = '" +mApplication.getPresentUser().getObjectId() +"')";
     	BmobQuery<Group> query = new BmobQuery<Group>();
     	query.doSQLQuery(mContext,sqlString, new groupListListener());
         }
-    public void findMessageOfGroup(String groupId){
-    	//对应分组的Id一一列出
-    	String sqlString = "select * from Messages where groupId = '"+groupId+"'";
-    	BmobQuery<Messages> query = new BmobQuery<Messages>();
-    	query.doSQLQuery(mContext,sqlString, new messageListListener());
-    }
+
     public void showToast(String s){
     	Toast toast = Toast.makeText(mContext, s, Toast.LENGTH_SHORT);
     	toast.show();

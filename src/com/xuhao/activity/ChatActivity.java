@@ -4,7 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobQueryResult;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SQLQueryListener;
+
 import com.example.androidtestproject.R;
+import com.xuhao.javaBean.Messages;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +19,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +29,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -39,7 +48,10 @@ public class ChatActivity extends Activity {
 	private EditText inputEdit;
 	private List<ChatEntity> chatList;
 	private Handler handler;
-
+	
+	
+	private String groupId ;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,8 +60,11 @@ public class ChatActivity extends Activity {
 		Intent intent = getIntent();
 		friendName = intent.getStringExtra("friendName");
 		friendId = intent.getIntExtra("friendId", 0);
+		groupId = intent.getStringExtra("groupId");
+		Log.d("present group ID",groupId);
 		initViews();
 		initEvents();
+		findMessageOfGroup(groupId);
 	}
 
 
@@ -150,6 +165,42 @@ public class ChatActivity extends Activity {
 			return view;
 		}
 	}
+	
+	
+	public void findMessageOfGroup(String groupId){
+    	//对应分组的Id一一列出
+    	String sqlString = "select * from Messages where groupId = '"+groupId+"'";
+    	BmobQuery<Messages> query = new BmobQuery<Messages>();
+    	query.doSQLQuery(this,sqlString, new messageListListener());
+    }
+    List<Messages> messageList;
+    private class messageListListener extends SQLQueryListener<Messages>{
+		@Override
+		public void done(BmobQueryResult<Messages> result, BmobException e) {
+			  if(e==null){//查询成功
+		       		messageList = result.getResults();
+		       		if(messageList!=null && messageList.size()>0){//查询成功，结果不为空
+		       			showToast("Message查询成功，结果不为空");
+		       			for(int i = 0;i<messageList.size();i++){
+		           			Log.d("messagelist", messageList.get(i).getContent());
+		           			}
+		       		}
+		       		else {//查询成功，返回结果为空
+		       		    showToast("查询成功，返回结果为空");
+		       		}
+		       	    }
+		       	    else {//查询失败，出现异常
+		       		showToast("错误码:"+e.getErrorCode()+"错误描述"+e.getMessage());
+		       	    }
+			
+		}
+    	
+    }
+    
+    public void showToast(String s){
+    	Toast toast = Toast.makeText(this, s, Toast.LENGTH_SHORT);
+    	toast.show();
+        }
 }
 
 
