@@ -76,7 +76,9 @@
         android:layout_marginLeft="20dp"
         android:background="@drawable/register_user_btn"
         android:textColor="@color/blue"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:onClick="QQLogIn"
+        />
     
 
     

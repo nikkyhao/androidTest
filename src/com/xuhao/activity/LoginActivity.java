@@ -21,6 +21,7 @@ import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SQLQueryListener;
 
+import com.example.androidtestproject.QQActivity;
 import com.example.androidtestproject.R;
 import com.xuhao.javaBean.User;
 
@@ -29,6 +30,7 @@ public class LoginActivity extends Activity {
     private RelativeLayout rl_user;
     private Button mLoginButton;
     private Button mRegisterButton;
+    private Button qqLogInButton;
     private EditText mAccount;
     private EditText mPassword;
     private MyApplication mApplication;
@@ -47,6 +49,7 @@ public class LoginActivity extends Activity {
         mRegisterButton = (Button) findViewById(R.id.register);
         mAccount = (EditText) findViewById(R.id.account);
         mPassword = (EditText) findViewById(R.id.password);
+        qqLogInButton = (Button)findViewById(R.id.qq_login);
         Animation anim = AnimationUtils.loadAnimation(mContext,
                 R.anim.login_anim);
         anim.setFillAfter(true);
@@ -102,6 +105,11 @@ public class LoginActivity extends Activity {
 	    }
 	}
 
+    
+    public void QQLogIn(View source){
+    	Intent intent = new Intent(LoginActivity.this,QQActivity.class);
+    	startActivity(intent);
+    }
 //以下是一些常用方法
     
     public void showToast(String s){
