@@ -31,13 +31,20 @@ import cn.bmob.v3.listener.SaveListener;
 import com.example.androidtestproject.R;
 import com.xuhao.javaBean.Group;
 import com.xuhao.javaBean.GroupRelation;
+import com.xuhao.javaBean.Messages;
 import com.xuhao.javaBean.User;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 /**
  * Created by ritaa on 2015/8/1.
+ * 目前此类有关Bmob的方法有 
+ * 分组添加对应 addGroupListener
+ * 获得联系人分组列表 ，对应addGroupList() 和addGroupListener
+ * 获得消息列表，对应showMessageList 和对应Listener
+ *
  */
 public class MessageFragment extends Fragment {
     private Context mContext;
@@ -53,7 +60,7 @@ public class MessageFragment extends Fragment {
     private MessageTabEntity chooseMessageEntity;
     private MyApplication mApplication;
     //以下是实体类
-    List<Group> grouplist;
+    
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -76,15 +83,14 @@ public class MessageFragment extends Fragment {
         mTitleBarView.setCommonTitle(View.GONE, View.VISIBLE, View.GONE);
         mTitleBarView.setTitleText("消息");
         
-        mMessageEntityList=new ArrayList<MessageTabEntity>();
-        
-        mMessageEntityList.add(new MessageTabEntity("徐豪","我睡了周强女友，你别跟他说","2015-8-1"));
-        mMessageEntityList.add(new MessageTabEntity("周强","徐豪是不是睡了我女友","2015-8-1"));
-        mMessageEntityList.add(new MessageTabEntity("张凯强","我看到徐豪睡了周强女友","2015-8-1"));
-
-        
-        adapter = new FriendMessageAdapter(mContext, mMessageEntityList);
-        mMessageListView.setAdapter(adapter);
+//        mMessageEntityList=new ArrayList<MessageTabEntity>();
+//        
+//        mMessageEntityList.add(new MessageTabEntity("徐豪","我睡了周强女友，你别跟他说","2015-8-1"));
+//        mMessageEntityList.add(new MessageTabEntity("周强","徐豪是不是睡了我女友","2015-8-1"));
+//        mMessageEntityList.add(new MessageTabEntity("张凯强","我看到徐豪睡了周强女友","2015-8-1"));
+//
+//        
+       
         mMessageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
@@ -116,7 +122,6 @@ public class MessageFragment extends Fragment {
                 });
         addGroupButton.setOnClickListener(new AddGroupListner());
         getGroupList();
-        findMessageOfGroup("c22cf134a3");
     }
     class FriendMessageAdapter extends BaseAdapter {
         private List<MessageTabEntity> mMessageEntities;
@@ -197,19 +202,23 @@ public class MessageFragment extends Fragment {
     //添加人到指定分组
   
     }
-    List<Message> messageList;
+    List<Group> grouplist;
     private class groupListListener extends SQLQueryListener<Group> {
        	@Override
        	public void done(BmobQueryResult<Group> result, BmobException e) {
        	    if(e==null){//查询成功
-       		showToast("查询成功");
        		grouplist = result.getResults();
        		if(grouplist!=null && grouplist.size()>0){//查询成功，结果不为空
-       			showToast("查询成功，结果不为空");
-       			for(int i = 0;i<grouplist.size();i++){
-           			Log.d("grouplist", grouplist.get(i).getName());
-           			}
-       		}
+       			showToast("group查询成功，结果不为空");
+       			mApplication.setGroupList(grouplist);
+       		 mMessageEntityList=new ArrayList<MessageTabEntity>();
+       		 for(int i =0;i<grouplist.size();i++){
+       			 Group current=grouplist.get(i);
+       			 mMessageEntityList.add(new MessageTabEntity(current.getName(),current.getName(),current.getCreatedAt()));
+       		 	}
+       		 adapter = new FriendMessageAdapter(mContext, mMessageEntityList);
+             mMessageListView.setAdapter(adapter);
+       		 }
        		else {//查询成功，返回结果为空
        		    showToast("查询成功，返回结果为空");
        		}
@@ -218,16 +227,17 @@ public class MessageFragment extends Fragment {
        		showToast("错误码:"+e.getErrorCode()+"错误描述"+e.getMessage());
        	    }
        	    }}
-    private class messageListListener extends SQLQueryListener<Message>{
+    
+    List<Messages> messageList;
+    private class messageListListener extends SQLQueryListener<Messages>{
 		@Override
-		public void done(BmobQueryResult<Message> result, BmobException e) {
+		public void done(BmobQueryResult<Messages> result, BmobException e) {
 			  if(e==null){//查询成功
-		       		showToast("查询成功");
 		       		messageList = result.getResults();
 		       		if(messageList!=null && messageList.size()>0){//查询成功，结果不为空
-		       			showToast("查询成功，结果不为空");
+		       			showToast("Message查询成功，结果不为空");
 		       			for(int i = 0;i<messageList.size();i++){
-		           			Log.d("messagelist", grouplist.get(i).getName());
+		           			Log.d("messagelist", messageList.get(i).getContent());
 		           			}
 		       		}
 		       		else {//查询成功，返回结果为空
@@ -242,13 +252,15 @@ public class MessageFragment extends Fragment {
     	
     }
     public void getGroupList(){
-    	String sqlString = "select * from Group where objectId in (select groupId from GroupRelation where userId = '" +mApplication.getPresentUser().getObjectId() +"')";//此id时吴静的
+    	//对应当前用户的分组一一列出
+    	String sqlString = "select * from Group where objectId in (select groupId from GroupRelation where userId = '" +mApplication.getPresentUser().getObjectId() +"')";
     	BmobQuery<Group> query = new BmobQuery<Group>();
     	query.doSQLQuery(mContext,sqlString, new groupListListener());
         }
     public void findMessageOfGroup(String groupId){
+    	//对应分组的Id一一列出
     	String sqlString = "select * from Messages where groupId = '"+groupId+"'";
-    	BmobQuery<Message> query = new BmobQuery<Message>();
+    	BmobQuery<Messages> query = new BmobQuery<Messages>();
     	query.doSQLQuery(mContext,sqlString, new messageListListener());
     }
     public void showToast(String s){
