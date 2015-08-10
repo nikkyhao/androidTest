@@ -1,0 +1,108 @@
+Teacher
+(
+name-String
+school-String
+major-String
+group-Relation
+)
+
+Group
+(
+type-String
+teacher-relation
+student-relation
+)
+
+
+Student
+(
+name-String
+school-String
+major-String
+group-relation
+)
+
+Messages
+(
+teacher - Pointer<Teacher>
+release_date - Date
+execute_date - Date
+content - String
+group -Pointer<Group>
+)
+
+-------after refactor------------------------------------
+
+User
+(
+
+username - String
+password - String 
+qqOpenID -String 
+
+school -String
+major -String
+gender - String
+nickName - String
+identity - String (学生或老师）
+portrait - BmobFile
+description - String
+
+friendRelation - Relation<User>
+
+
+)
+
+Group
+(
+name - String
+groupPortrait
+）
+
+
+GroupRelation
+(
+userId  -String   //user objectId
+groupId  -String   //groupobject Id
+)
+
+Messages
+(
+release_date - Date
+execute_date - Date
+content - String
+groupId - String
+)
+
+FriendRelation(
+username - String
+friendname -String
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
