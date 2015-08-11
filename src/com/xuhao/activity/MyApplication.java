@@ -11,8 +11,8 @@ import android.util.Log;
 
 public class MyApplication extends Application{
     private User presentUser = null;
-    private List<User> FriendList = null;
-    private List<Group> groupList = null;
+    private List<User> FriendList = null;//存放此用户所有好友信息
+    private List<Group> groupList = null;//存放所有此用户分组信息
     
     @Override
     public void onCreate() {

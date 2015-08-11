@@ -35,12 +35,6 @@ public class User extends BmobObject{
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
-    public String getNickname() {
-        return nickName;
-    }
-    public void setNickname(String nickName) {
-        this.nickName = nickName;
-    }
     public String getGender() {
         return gender;
     }

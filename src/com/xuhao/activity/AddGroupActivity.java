@@ -4,18 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.androidtestproject.R;
+import com.xuhao.javaBean.Group;
+import com.xuhao.javaBean.GroupRelation;
 import com.xuhao.javaBean.User;
 
+import android.R.integer;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,40 +37,47 @@ public class AddGroupActivity extends Activity{
     private ListView mFriendListView;
     private AddGroupAdapter adapter;
     private TextView btn_creategroup;
+    
+    private MyApplication mApplication;
+    private List<User> choosenFriendList;//用于保存用户打了对号的那些个用户
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         setContentView(R.layout.activity_addgroup);
-        mContext=this;
+       mApplication =(MyApplication)getApplication();
         findView();
         init();
     }
     
     
     private void init() {
-	// TODO Auto-generated method stub
-	//  设置联系人
-	User user=new User();
-	user.setUserName("xuhao");
-	mFriendList=new ArrayList<User>();
-      mFriendList.add(user);
-      user.setUserName("zhouqiang");
-      mFriendList.add(user);
-      user.setUserName("mojin");
-      mFriendList.add(user);
-      mFriendListView.setAdapter(new AddGroupAdapter(mContext, mFriendList));
+    	 mContext=this;
+    	//  设置联系人
+	List<User> friendList = mApplication.getFriendList();
+	//用于用户点击ListView的其他地方也可以使checkBox状态改变
+	  mFriendListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+          @Override
+          public void onItemClick(AdapterView<?> parent, View view,
+                                  int position, long id) {
+          	
+          }
+      });
+	  mFriendListView.setAdapter(new AddGroupAdapter(mContext, friendList));
+	  //添加监听
+	  btn_creategroup.setOnClickListener(new MyCreateGroupListener());
+	  choosenFriendList = new ArrayList<User>();
     }
 
-
+    
     private void findView() {
 	// TODO Auto-generated method stub
 	btn_creategroup=(TextView)findViewById(R.id.btn_addgroup_create);
 	mFriendListView=(ListView)findViewById(R.id.listview_addtogroup);
     }
-
-
+    
+    
     class AddGroupAdapter extends BaseAdapter{
 	 private List<User> mFriendList;
 	 private LayoutInflater mInflater;
@@ -87,13 +104,12 @@ public class AddGroupActivity extends Activity{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 	    // TODO Auto-generated method stub
-	    CheckBox cBox;
-	    ImageView avatarView;
+
+	    	ImageView avatarView;
             TextView nameView;
             TextView introView;
             User user = mFriendList.get(position);
             //分别获取头像，姓名，以及个人介绍
-           
             String name = mFriendList.get(position).getUserName();
             String briefIntro = mFriendList.get(position).getDescription();
             convertView=mInflater.inflate(R.layout.addtogroup_item,
@@ -117,11 +133,23 @@ public class AddGroupActivity extends Activity{
             introView.setText(briefIntro);
             nameView.setText(name);
 
+    	    CheckBox cBox = (CheckBox)convertView.findViewById(R.id.checkBox);
+            cBox.setOnCheckedChangeListener(new MyCheckedChangedListener(position));
             return convertView;
 	}
-	
-	
-	
+	//此类是内部类AddGroupAdapter类的内部类，屌不屌！
+	class MyCheckedChangedListener implements OnCheckedChangeListener{
+		int position;
+		public MyCheckedChangedListener(int position) {
+			// TODO Auto-generated constructor stub
+			this.position = position;
+		}
+		@Override
+		public void onCheckedChanged(CompoundButton buttonView,
+				boolean isChecked) {
+			choosenFriendList.add(mApplication.getFriendList().get(position));
+		}
+	}
 	
 	
     }
@@ -129,6 +157,18 @@ public class AddGroupActivity extends Activity{
     
     
     
-    
+    class MyCreateGroupListener implements View.OnClickListener{
+		@Override
+		public void onClick(View v) {
+			for(int i=0;i<choosenFriendList.size();i++){
+				Log.d("choosenFriendList", choosenFriendList.get(i).getNickName());
+			}
+//			Group newGroup = new Group();
+//			newGroup.setName("未命名分组");
+//			GroupRelation relation= new GroupRelation();
+//			relation.set
+		}
+		
+	}
 
 }
