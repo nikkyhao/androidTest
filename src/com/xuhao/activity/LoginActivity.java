@@ -74,6 +74,8 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
         	//这里填写注册功能以及界面
+        	Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
+        	startActivity(intent);//进入注册界面
             }
         });
     }

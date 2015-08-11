@@ -79,6 +79,11 @@
 
         </activity>
         <activity
+            android:name="com.xuhao.activity.RegisterActivity">
+
+        </activity>
+        
+        <activity
             android:name="com.xuhao.activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -87,7 +92,9 @@
             </intent-filter>
         </activity>
         <activity android:name="com.xuhao.activity.ChatActivity">
-            </activity>
+        </activity>
+        <activity android:name="com.xuhao.activity.AddGroupActivity"/>
+        
     </application>
 
 </manifest>

@@ -49,7 +49,6 @@ import java.util.List;
 public class MessageFragment extends Fragment {
     private Context mContext;
     private View mBaseView;
-    private TitleBarView mTitleBarView;
     private List<MessageTabEntity> mMessageEntityList;
     private ListView mMessageListView;
     private FriendMessageAdapter adapter;
@@ -71,17 +70,14 @@ public class MessageFragment extends Fragment {
         return mBaseView;
     }
     private void findView() {
-        mTitleBarView = (TitleBarView) mBaseView.findViewById(R.id.title_bar);
         
         mMessageListView = (ListView) mBaseView
                 .findViewById(R.id.message_list_listview);
-        addGroupButton = (Button)mBaseView.findViewById(R.id.addGroupButton);
+     
     }
     private void init() {
         //设置标题栏
     	mApplication = (MyApplication)(getActivity().getApplication());
-        mTitleBarView.setCommonTitle(View.GONE, View.VISIBLE, View.GONE);
-        mTitleBarView.setTitleText("消息");
         
 //        mMessageEntityList=new ArrayList<MessageTabEntity>();
 //        
@@ -118,7 +114,7 @@ public class MessageFragment extends Fragment {
                         }
                     }
                 });
-        addGroupButton.setOnClickListener(new AddGroupListner());
+      //  addGroupButton.setOnClickListener(new AddGroupListner());
         getGroupList();
     }
     class FriendMessageAdapter extends BaseAdapter {
