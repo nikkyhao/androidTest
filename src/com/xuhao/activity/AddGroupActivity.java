@@ -3,6 +3,9 @@ package com.xuhao.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.listener.SaveListener;
+
 import com.example.androidtestproject.R;
 import com.xuhao.javaBean.Group;
 import com.xuhao.javaBean.GroupRelation;
@@ -10,6 +13,7 @@ import com.xuhao.javaBean.User;
 
 import android.R.integer;
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -25,6 +29,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -158,17 +163,63 @@ public class AddGroupActivity extends Activity{
     
     
     class MyCreateGroupListener implements View.OnClickListener{
+    	List<BmobObject> batch = new ArrayList<BmobObject>();
 		@Override
 		public void onClick(View v) {
 			for(int i=0;i<choosenFriendList.size();i++){
 				Log.d("choosenFriendList", choosenFriendList.get(i).getNickName());
 			}
-//			Group newGroup = new Group();
-//			newGroup.setName("未命名分组");
-//			GroupRelation relation= new GroupRelation();
-//			relation.set
+			//不确定下面的final会不会出问题
+			
+			final Group newGroup = new Group();
+			StringBuilder groupName = makeGroupName();
+			newGroup.setName(groupName.toString());
+			newGroup.save(mContext, new SaveListener() {
+			    @Override
+			    public void onSuccess() {
+			    	batch.clear();
+			    	for(int i =0;i<choosenFriendList.size();i++){
+						GroupRelation relation= new GroupRelation();
+						relation.setGroupId(newGroup.getObjectId());
+						relation.setUserId(choosenFriendList.get(i).getObjectId());
+						batch.add(relation);
+						}
+			    	GroupRelation relation = new GroupRelation();
+			    	relation.setGroupId(newGroup.getObjectId());
+			    	relation.setUserId(mApplication.getPresentUser().getObjectId());
+			    	batch.add(relation);
+			    	new BmobObject().insertBatch(mContext, batch, new SaveListener() {
+			    	    @Override
+			    	    public void onSuccess() {
+			    	    	showToast("批量添加成功");
+			    	    }
+			    	    @Override
+			    	    public void onFailure(int code, String msg) {
+			    	    	showToast("addFailure："+msg);
+			    	    }
+			    	});
+			    }
+
+			    @Override
+			    public void onFailure(int code, String msg) {
+			    	 showToast("创建数据失败：" + msg);
+			    }
+			});
+			
+		}
+		private StringBuilder makeGroupName() {
+			StringBuilder string = new StringBuilder();
+			for(int i =0;i<choosenFriendList.size();i++){
+				User user = choosenFriendList.get(i);
+			string.append(user.getNickName()+"、");
+			}
+			string.append("的分组");
+			return string;
 		}
 		
 	}
-
+    public void showToast(String s){
+    	Toast toast = Toast.makeText(mContext, s, Toast.LENGTH_SHORT);
+    	toast.show();
+        }
 }

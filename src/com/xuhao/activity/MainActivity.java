@@ -99,7 +99,7 @@ public class MainActivity extends ActionBarActivity {
                 setButton(v);
             }
         });
-     //   mConstact.performClick();//先显示联系人
+      mConstact.performClick();//先显示联系人
 
 
     }
