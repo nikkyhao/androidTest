@@ -45,6 +45,7 @@ public class FriendListFragment extends Fragment{
     private TitleBarView mTitleBarView;
     private ListView mFriendListView;
     private List<User> mFriendList;
+    
     //全局Application
     MyApplication mApplication = null;
     final Handler handler = new Handler(){
@@ -55,7 +56,6 @@ public class FriendListFragment extends Fragment{
 //  		userAdaper.notifyDataSetChanged();
   		// myList.setAdapter(new userListAdapter(userList, (List<Bitmap>)msg.obj));
   		 mFriendListView.setAdapter(new FriendListAdapter(mContext,mFriendList, (List<Bitmap>)msg.obj));
-  		System.out.println("图片已经获取");
   	    }
   	    else{//表示文字
 //  		userAdaper.setUserList((List<User>)msg.obj);
@@ -71,7 +71,6 @@ public class FriendListFragment extends Fragment{
                              Bundle savedInstanceState) {
         mContext = getActivity();
         mBaseView = inflater.inflate(R.layout.fragment_friendlist, null);
-
         findView();
         init();
         return mBaseView;
@@ -87,11 +86,14 @@ public class FriendListFragment extends Fragment{
         mTitleBarView.setBtnLeft(R.string.control);//设置左上角的按钮 “管理”
         mTitleBarView.setBtnRight(R.drawable.qq_constact);//设置右上角的按钮"添加"
         mApplication = (MyApplication)(getActivity().getApplication());
+        if(mApplication.isFriendListChanged){
         getFriendRelation();
-//        //设置联系人
-//        mFriendList.add(new User("徐豪","这是一个逗比"));
-//        mFriendList.add(new User("周强","这是一个超级逗比"));
-//        mFriendList.add(new User("蕫景磊","这是一个究极逗比"));
+        showToast("从网络获取好友列表");
+        mApplication.isFriendListChanged = false;
+        }
+        else{//如果不是第一次的话就从mApplication中获取
+        	mFriendListView.setAdapter(new FriendListAdapter(mContext, mApplication.getFriendList(), mApplication.getBmp_list()));
+        }
     }
     class FriendListAdapter extends BaseAdapter{
         private List<User> mFriendList;
@@ -155,11 +157,9 @@ public class FriendListFragment extends Fragment{
    	@Override
    	public void done(BmobQueryResult<User> result, BmobException e) {
    	    if(e==null){//查询成功
-   		showToast("查询成功");
    		mFriendList = (List<User>) result.getResults();
    		mApplication.setFriendList(mFriendList);
    		if(mFriendList!=null && mFriendList.size()>0){//查询成功，返回结果不空
-   		    showToast("查询成功");
    		 Message message = new Message();
 		    message.obj=mFriendList;
 		    message.what = 1;//非图片信息
@@ -170,6 +170,7 @@ public class FriendListFragment extends Fragment{
                   public void run() {
              	 Iterator<User> iterator = mFriendList.iterator();
        		  List<Bitmap> bmp_list = new ArrayList<Bitmap>();
+       		  mApplication.setBmp_list(bmp_list);
        		  while(iterator.hasNext()){
        		      bmp_list.add(getBitmap(iterator.next().getPortrait().getFileUrl(mContext)));
        		  }
@@ -193,7 +194,7 @@ public class FriendListFragment extends Fragment{
     
 
     public void showToast(String s){
-	Toast toast = Toast.makeText(mContext, s, Toast.LENGTH_LONG);
+	Toast toast = Toast.makeText(mContext, s, Toast.LENGTH_SHORT);
 	toast.show();
     }
     public void getFriendRelation(){

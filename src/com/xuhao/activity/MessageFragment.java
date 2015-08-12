@@ -40,10 +40,6 @@ import java.util.List;
 
 /**
  * Created by ritaa on 2015/8/1.
- * 目前此类有关Bmob的方法有 
- * 分组添加对应 addGroupListener
- * 获得联系人分组列表 ，对应addGroupList() 和addGroupListener
- * 获得消息列表，对应showMessageList 和对应Listener
  *
  */
 public class MessageFragment extends Fragment {
@@ -115,7 +111,20 @@ public class MessageFragment extends Fragment {
                     }
                 });
         btn_addgroup.setOnClickListener(new AddGroupListner() );
+        if(mApplication.isGroupListChanged){
         getGroupList();
+        mApplication.isGroupListChanged = false;
+        }else {
+        	List<Group> grouplist =mApplication.getGroupList();
+        	 mMessageEntityList=new ArrayList<MessageTabEntity>();
+       		 for(int i =0;i<grouplist.size();i++){
+       			 Group current=grouplist.get(i);
+       			 mMessageEntityList.add(new MessageTabEntity(current.getName(),current.getName(),current.getCreatedAt(),current.getObjectId()));
+       		 	}
+       		 adapter = new FriendMessageAdapter(mContext, mMessageEntityList);
+             mMessageListView.setAdapter(adapter);
+
+		}
     }
     class FriendMessageAdapter extends BaseAdapter {
         private List<MessageTabEntity> mMessageEntities;
@@ -198,8 +207,8 @@ public class MessageFragment extends Fragment {
     //添加人到指定分组
   
     }
-    List<Group> grouplist;
     private class groupListListener extends SQLQueryListener<Group> {
+    	List<Group> grouplist;
        	@Override
        	public void done(BmobQueryResult<Group> result, BmobException e) {
        	    if(e==null){//查询成功

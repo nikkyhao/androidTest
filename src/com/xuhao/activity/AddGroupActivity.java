@@ -166,11 +166,6 @@ public class AddGroupActivity extends Activity{
     	List<BmobObject> batch = new ArrayList<BmobObject>();
 		@Override
 		public void onClick(View v) {
-			for(int i=0;i<choosenFriendList.size();i++){
-				Log.d("choosenFriendList", choosenFriendList.get(i).getNickName());
-			}
-			//不确定下面的final会不会出问题
-			
 			final Group newGroup = new Group();
 			StringBuilder groupName = makeGroupName();
 			newGroup.setName(groupName.toString());
@@ -198,6 +193,7 @@ public class AddGroupActivity extends Activity{
 			    	    	showToast("addFailure："+msg);
 			    	    }
 			    	});
+			    	mApplication.isGroupListChanged = true;//让GroupList显示的时候需要再从网络上获取一遍
 			    }
 
 			    @Override

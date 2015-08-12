@@ -34,11 +34,13 @@ public class MainActivity extends ActionBarActivity {
 
     private PopupWindow mPopupWindow;
     private LinearLayout buttomBarGroup;
+    
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	//修改了此处的顺序
     	super.onCreate(savedInstanceState);
-    	requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
+    	//requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏  这句话mac就不行，但是windows就行
         setContentView(R.layout.activity_main);
         mContext=this;
         FindView();
@@ -67,7 +69,6 @@ public class MainActivity extends ActionBarActivity {
         mConstact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "初始化friendListFragment", Toast.LENGTH_LONG).show();
                 FragmentManager fm=getSupportFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
                 FriendListFragment constactFatherFragment=new FriendListFragment();
