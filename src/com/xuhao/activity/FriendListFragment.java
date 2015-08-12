@@ -85,7 +85,7 @@ public class FriendListFragment extends Fragment{
     private void init() {
         //设置标题栏
         mApplication = (MyApplication)(getActivity().getApplication());
-        addFriendImageView.setOnClickListener(new addFriendListener());
+        addFriendImageView.setOnClickListener(new addFriendButtonListener());
         if(mApplication.isFriendListChanged){
         getFriendRelation();
         showToast("从网络获取好友列表");
@@ -104,7 +104,6 @@ public class FriendListFragment extends Fragment{
             this.mFriendList = vector;
             this.bmplist = bmplist;
             mInflater = LayoutInflater.from(context);
-            System.out.println("FriendAdapter");
         }
         public int getCount() {
             return mFriendList.size();
@@ -172,6 +171,7 @@ public class FriendListFragment extends Fragment{
        		  List<Bitmap> bmp_list = new ArrayList<Bitmap>();
        		  mApplication.setBmp_list(bmp_list);
        		  while(iterator.hasNext()){
+       		      //注意这里如果服务器上照片为空的话会报空指针错
        		      bmp_list.add(getBitmap(iterator.next().getPortrait().getFileUrl(mContext)));
        		  }
                       Message msg = new Message();
@@ -239,14 +239,26 @@ public class FriendListFragment extends Fragment{
 	    return null;
 
 	    }
-    class addFriendListener implements View.OnClickListener{
-
+    class addFriendButtonListener implements View.OnClickListener{
 	@Override
 	public void onClick(View v) {
 	    // TODO Auto-generated method stub
 	    Intent intent = new Intent(mContext,AddFriendActivity.class);
-	    startActivity(intent);
+	    startActivityForResult(intent, 0);
 	}
 	
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	 if(mApplication.isFriendListChanged){
+	        getFriendRelation();
+	        showToast("从网络获取好友列表");
+	        mApplication.isFriendListChanged = false;
+	        }
+	        else{//如果不是第一次的话就从mApplication中获取
+	        	mFriendListView.setAdapter(new FriendListAdapter(mContext, mApplication.getFriendList(), mApplication.getBmp_list()));
+	        }
     }
 }

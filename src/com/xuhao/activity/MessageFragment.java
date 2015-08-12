@@ -184,26 +184,7 @@ public class MessageFragment extends Fragment {
 		@Override
 		public void onClick(View v) {
 		    Intent intent=new Intent(mContext,AddGroupActivity.class);
-		    startActivity(intent);
-//			User xuhao = new User(); xuhao.setObjectId("9e7b4ffd32");
-//			User wujing = new User(); wujing.setObjectId("e8bf30ca19");
-//			Group whuGroup = new Group();whuGroup.setObjectId("c22cf134a3");
-//	    	GroupRelation grelation = new GroupRelation();
-//	    	grelation.setGroupId(whuGroup.getObjectId());
-//	    	grelation.setUserId(xuhao.getObjectId());
-//	    	grelation.save(mContext, new SaveListener() {
-//	    	    @Override
-//	    	    public void onSuccess() {
-//	    	        // TODO Auto-generated method stub
-//	    	        showToast("添加数据成功:group");
-//	    	    }
-//
-//	    	    @Override
-//	    	    public void onFailure(int code, String msg) {
-//	    	        // TODO Auto-generated method stub
-//	    	        showToast("创建数据失败：" + msg);
-//	    	    }
-//	    	});			
+		    startActivityForResult(intent, 0);
 		}
     //添加人到指定分组
   
@@ -247,4 +228,23 @@ public class MessageFragment extends Fragment {
     	Toast toast = Toast.makeText(mContext, s, Toast.LENGTH_SHORT);
     	toast.show();
         }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	if(mApplication.isGroupListChanged){
+	        getGroupList();
+	        mApplication.isGroupListChanged = false;
+	        }else {
+	        	List<Group> grouplist =mApplication.getGroupList();
+	        	 mMessageEntityList=new ArrayList<MessageTabEntity>();
+	       		 for(int i =0;i<grouplist.size();i++){
+	       			 Group current=grouplist.get(i);
+	       			 mMessageEntityList.add(new MessageTabEntity(current.getName(),current.getName(),current.getCreatedAt(),current.getObjectId()));
+	       		 	}
+	       		 adapter = new FriendMessageAdapter(mContext, mMessageEntityList);
+	             mMessageListView.setAdapter(adapter);
+			}
+	
+    }
+    
+    
 }

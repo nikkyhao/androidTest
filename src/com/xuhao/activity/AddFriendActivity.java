@@ -32,9 +32,9 @@ import android.widget.Toast;
 
 public class AddFriendActivity extends Activity {
     private EditText usernameEdit ;
-    private EditText resultEdit;
     private Button commitButton;
-    
+    private Button backButton;
+    private MyApplication mApplication ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
@@ -45,11 +45,12 @@ public class AddFriendActivity extends Activity {
 
     public void findView() {
 	usernameEdit =(EditText)findViewById(R.id.usernameTextView);
-	resultEdit = (EditText)findViewById(R.id.resultTextView);
 	commitButton = (Button)findViewById(R.id.button1);
+	backButton = (Button)findViewById(R.id.back);
     }
     public void init() {
 	commitButton.setOnClickListener(new AddFriendListener());
+	mApplication = (MyApplication)getApplication();
     }
     
     class AddFriendListener implements View.OnClickListener{
@@ -72,6 +73,7 @@ public class AddFriendActivity extends Activity {
    		searchedUser = result.getResults();
    		if(searchedUser!=null && searchedUser.size()>0){//查询成功，返回结果不空
    		    addFriendToServer();
+   		    mApplication.isFriendListChanged = true;
    		}
    		else {//查询成功，返回结果为空
    		    showToast("没有这个好友");
@@ -83,7 +85,7 @@ public class AddFriendActivity extends Activity {
    	  
    	    }
 	private void addFriendToServer() {
-	    MyApplication mApplication = (MyApplication)getApplication();
+	   
 	    FriendRelation relation1 = new FriendRelation();
 	    relation1.setFriendname(searchedUser.get(0).getUserName());
 	    relation1.setUsername(mApplication.getPresentUser().getUserName());
@@ -107,5 +109,9 @@ public class AddFriendActivity extends Activity {
     public void showToast(String s){
 	Toast toast = Toast.makeText(this, s, Toast.LENGTH_SHORT);
 	toast.show();
+    }
+    public void Back(View source){
+	setResult(6);
+	AddFriendActivity.this.finish();
     }
 }

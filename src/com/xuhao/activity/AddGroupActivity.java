@@ -79,6 +79,7 @@ public class AddGroupActivity extends Activity{
 	    @Override
 	    public void onClick(View v) {
 		// TODO Auto-generated method stub
+		setResult(5);//随便写一个数而已
 		AddGroupActivity.this.finish();
 	    }
 	});

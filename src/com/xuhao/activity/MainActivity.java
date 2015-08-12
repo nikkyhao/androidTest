@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 //import android.support.v4.app.FragmentManager;
 //import android.support.v4.app.FragmentTransaction;
 //import android.support.v4.app.Fragment;
 //import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +41,7 @@ public class MainActivity extends Activity {
     private LinearLayout buttomBarGroup;
     
     
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	//修改了此处的顺序
@@ -57,9 +60,9 @@ public class MainActivity extends Activity {
         mDeynaimic=(ImageButton) findViewById(R.id.buttom_deynaimic);
         mSetting=(ImageButton) findViewById(R.id.buttom_setting);
     }
-    public void init(){
+    public void init(){//这个是好友列表
         mNews.setOnClickListener(new View.OnClickListener() {
-            @Override
+            @Override 
             public void onClick(View v) {
                 FragmentManager fm=getFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
@@ -71,7 +74,7 @@ public class MainActivity extends Activity {
         });
         mConstact.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {//这个是分组的列表
                 FragmentManager fm=getFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
                 FriendListFragment constactFatherFragment=new FriendListFragment();
@@ -94,7 +97,7 @@ public class MainActivity extends Activity {
         });
         mSetting.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {//这个是个人中心
                 FragmentManager fm=getFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
                 UserInfoFragment settingFragment=new UserInfoFragment();
@@ -103,7 +106,7 @@ public class MainActivity extends Activity {
                 setButton(v);
             }
         });
-      mConstact.performClick();//先显示联系人
+       mConstact.performClick();//先显示联系人
 
 
     }
@@ -135,4 +138,6 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
