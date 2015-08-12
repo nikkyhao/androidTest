@@ -38,7 +38,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
     	//修改了此处的顺序
     	super.onCreate(savedInstanceState);
-     // requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
+    	requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         setContentView(R.layout.activity_main);
         mContext=this;
         FindView();

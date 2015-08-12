@@ -46,15 +46,14 @@ public class RegisterActivity extends Activity{
 	}
     
     class MyRegisterListener implements OnClickListener{
-    	String userid = mid.getText().toString();
-    	String password = mpsd.getText().toString();
-    	String sex = msex.getText().toString();
-    	String Nickname = mname.getText().toString();
-    	String idnetity = musertype.getText().toString();
+    
 		@Override
 		public void onClick(View v) {
-			Log.d("userid", userid);
-			
+			String userid = mid.getText().toString();
+		    	String password = mpsd.getText().toString();
+		    	String sex = msex.getText().toString();
+		    	String Nickname = mname.getText().toString();
+		    	String idnetity = musertype.getText().toString();
 			
 			User user = new User();
 			user.setUserName(userid);
