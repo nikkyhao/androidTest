@@ -4,10 +4,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.xuhao.activity.TitleBarView
-        android:id="@+id/title_bar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="48dp"
+        android:background="#289be5" >
+        <TextView
+            android:id="@+id/message_btn_addgroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:text="管理"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" /> 
+       
+        <TextView
+            android:id="@+id/common_title_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/white"
+            android:text="好友"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/btn_friendlist_addfriend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/qq_contact_list_add_bt_common" />
+
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/friend_list_listview"

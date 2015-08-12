@@ -1,10 +1,13 @@
 package com.xuhao.activity;
 
+import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
+//import android.support.v4.app.FragmentManager;
+//import android.support.v4.app.FragmentTransaction;
+//import android.support.v4.app.Fragment;
+//import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,7 +23,7 @@ import android.widget.Toast;
 import com.example.androidtestproject.R;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     protected static final String TAG = "MainActivity";
     private Context mContext;
@@ -40,7 +43,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
     	//修改了此处的顺序
     	super.onCreate(savedInstanceState);
-    	//requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏  这句话mac就不行，但是windows就行
+    	requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏  这句话mac就不行，但是windows就行
         setContentView(R.layout.activity_main);
         mContext=this;
         FindView();
@@ -58,7 +61,7 @@ public class MainActivity extends ActionBarActivity {
         mNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm=getSupportFragmentManager();
+                FragmentManager fm=getFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
                 MessageFragment messageFragment=new MessageFragment();
                 ft.replace(R.id.fl_content, messageFragment,MainActivity.TAG);
@@ -69,7 +72,7 @@ public class MainActivity extends ActionBarActivity {
         mConstact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm=getSupportFragmentManager();
+                FragmentManager fm=getFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
                 FriendListFragment constactFatherFragment=new FriendListFragment();
                 ft.replace(R.id.fl_content, constactFatherFragment, MainActivity.TAG);
@@ -81,7 +84,7 @@ public class MainActivity extends ActionBarActivity {
         mDeynaimic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm=getSupportFragmentManager();
+                FragmentManager fm=getFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
                 NearByFragment dynamicFragment=new NearByFragment();
                 ft.replace(R.id.fl_content, dynamicFragment,MainActivity.TAG);
@@ -92,7 +95,7 @@ public class MainActivity extends ActionBarActivity {
         mSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm=getSupportFragmentManager();
+                FragmentManager fm=getFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
                 UserInfoFragment settingFragment=new UserInfoFragment();
                 ft.replace(R.id.fl_content, settingFragment,MainActivity.TAG);

@@ -1,12 +1,14 @@
 package com.xuhao.activity;
 
+import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
+//import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,9 +44,10 @@ import java.util.ListIterator;
 public class FriendListFragment extends Fragment{
     private Context mContext;
     private View mBaseView;
-    private TitleBarView mTitleBarView;
     private ListView mFriendListView;
     private List<User> mFriendList;
+    
+    ImageView addFriendImageView = null;
     
     //全局Application
     MyApplication mApplication = null;
@@ -76,16 +79,13 @@ public class FriendListFragment extends Fragment{
         return mBaseView;
     }
     private void findView() {
-        mTitleBarView = (TitleBarView) mBaseView.findViewById(R.id.title_bar);
         mFriendListView = (ListView)mBaseView.findViewById(R.id.friend_list_listview);
+        addFriendImageView = (ImageView)mBaseView.findViewById(R.id.btn_friendlist_addfriend);
     }
     private void init() {
         //设置标题栏
-        mTitleBarView.setCommonTitle(View.VISIBLE, View.VISIBLE, View.VISIBLE);
-        mTitleBarView.setTitleText("好友");
-        mTitleBarView.setBtnLeft(R.string.control);//设置左上角的按钮 “管理”
-        mTitleBarView.setBtnRight(R.drawable.qq_constact);//设置右上角的按钮"添加"
         mApplication = (MyApplication)(getActivity().getApplication());
+        addFriendImageView.setOnClickListener(new addFriendListener());
         if(mApplication.isFriendListChanged){
         getFriendRelation();
         showToast("从网络获取好友列表");
@@ -239,5 +239,14 @@ public class FriendListFragment extends Fragment{
 	    return null;
 
 	    }
+    class addFriendListener implements View.OnClickListener{
 
+	@Override
+	public void onClick(View v) {
+	    // TODO Auto-generated method stub
+	    Intent intent = new Intent(mContext,AddFriendActivity.class);
+	    startActivity(intent);
+	}
+	
+    }
 }

@@ -1,7 +1,8 @@
 package com.xuhao.activity;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
+//import android.support.v4.app.Fragment;
+//import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
