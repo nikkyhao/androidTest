@@ -29,6 +29,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
@@ -42,6 +43,7 @@ public class AddGroupActivity extends Activity{
     private ListView mFriendListView;
     private AddGroupAdapter adapter;
     private TextView btn_creategroup;
+    private ImageView btn_back;
     
     private MyApplication mApplication;
     private List<User> choosenFriendList;//用于保存用户打了对号的那些个用户
@@ -73,6 +75,13 @@ public class AddGroupActivity extends Activity{
 	  //添加监听
 	  btn_creategroup.setOnClickListener(new MyCreateGroupListener());
 	  choosenFriendList = new ArrayList<User>();
+	  btn_back.setOnClickListener(new OnClickListener() {
+	    @Override
+	    public void onClick(View v) {
+		// TODO Auto-generated method stub
+		AddGroupActivity.this.finish();
+	    }
+	});
     }
 
     
@@ -80,6 +89,7 @@ public class AddGroupActivity extends Activity{
 	// TODO Auto-generated method stub
 	btn_creategroup=(TextView)findViewById(R.id.btn_addgroup_create);
 	mFriendListView=(ListView)findViewById(R.id.listview_addtogroup);
+	btn_back=(ImageView)findViewById(R.id.common_title_back);
     }
     
     
