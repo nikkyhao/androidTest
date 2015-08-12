@@ -6,13 +6,33 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="com.xuhao.activity.AddFriendActivity" >
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.67" 
-        android:text="这是注册界面"
-        />
+        android:layout_weight="0.67"
+        android:ems="10"
+        android:text="这是添加好友界面" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/usernameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.67"
+        android:ems="10"
+        android:text="请输入要添加好友的用户名或学号" />
+
+    <Button
+        
+        android:id="@+id/button1"
+        android:layout_width="138dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.61"
+        android:text="添加" />
 
 </LinearLayout>
