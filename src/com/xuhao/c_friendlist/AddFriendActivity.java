@@ -29,12 +29,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class AddFriendActivity extends Activity {
     private EditText usernameEdit ;
     private Button commitButton;
-    private Button backButton;
+    private ImageView backButton;
     private MyApplication mApplication ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,9 @@ public class AddFriendActivity extends Activity {
     }
 
     public void findView() {
-	usernameEdit =(EditText)findViewById(R.id.usernameTextView);
+	usernameEdit =(EditText)findViewById(R.id.xuhao);
 	commitButton = (Button)findViewById(R.id.button1);
-	backButton = (Button)findViewById(R.id.back);
+	backButton = (ImageView)findViewById(R.id.back);
     }
     public void init() {
 	commitButton.setOnClickListener(new AddFriendListener());

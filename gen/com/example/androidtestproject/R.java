@@ -1480,9 +1480,9 @@ containing a value of this type.
         public static final int app_cancle=0x7f090085;
         public static final int app_change_user=0x7f090083;
         public static final int app_exit=0x7f090084;
-        public static final int back=0x7f09003e;
+        public static final int back=0x7f09003c;
         public static final int beginning=0x7f090016;
-        public static final int btn_addgroup_create=0x7f090041;
+        public static final int btn_addgroup_create=0x7f09003e;
         public static final int btn_friendlist_addfriend=0x7f0900a5;
         public static final int btn_selectdate_confirm=0x7f090079;
         public static final int btn_selecttime_confirm=0x7f09007b;
@@ -1491,7 +1491,7 @@ containing a value of this type.
         public static final int buttom_deynaimic=0x7f09005c;
         public static final int buttom_news=0x7f09005b;
         public static final int buttom_setting=0x7f090059;
-        public static final int button1=0x7f09003d;
+        public static final int button1=0x7f090041;
         public static final int button2=0x7f090062;
         public static final int button3=0x7f090063;
         public static final int button4=0x7f090064;
@@ -1509,9 +1509,9 @@ containing a value of this type.
         public static final int checkBox=0x7f09007e;
         public static final int checkbox=0x7f09002d;
         public static final int collapseActionView=0x7f090010;
-        public static final int common_title_back=0x7f09003f;
+        public static final int common_title_back=0x7f090042;
         public static final int common_title_operater=0x7f090065;
-        public static final int common_title_title=0x7f090040;
+        public static final int common_title_title=0x7f09003d;
         public static final int date_show=0x7f090044;
         public static final int default_activity_button=0x7f090028;
         public static final int dialog=0x7f090014;
@@ -1544,12 +1544,12 @@ containing a value of this type.
         public static final int ifRoom=0x7f090011;
         public static final int image=0x7f090027;
         public static final int inputText=0x7f090060;
-        public static final int item_text_image_title=0x7f090043;
+        public static final int item_text_image_title=0x7f09003f;
         public static final int iv_welcome=0x7f09007d;
         public static final int line=0x7f09005d;
         public static final int listMode=0x7f090006;
         public static final int list_item=0x7f090029;
-        public static final int listview_addtogroup=0x7f090042;
+        public static final int listview_addtogroup=0x7f090043;
         public static final int ll_exit=0x7f090082;
         public static final int ll_news=0x7f0900a9;
         public static final int ll_user_info=0x7f090052;
@@ -1631,10 +1631,10 @@ containing a value of this type.
         public static final int user_photo=0x7f0900a8;
         public static final int user_picture=0x7f0900ac;
         public static final int username=0x7f09005f;
-        public static final int usernameTextView=0x7f09003c;
         public static final int withText=0x7f090013;
         public static final int work_fragment_note=0x7f090048;
         public static final int work_fragment_publish_btn=0x7f090049;
+        public static final int xuhao=0x7f090040;
     }
     public static final class integer {
         /**  The maximum number of action buttons that should be permitted within

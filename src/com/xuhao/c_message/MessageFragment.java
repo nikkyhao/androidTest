@@ -77,15 +77,6 @@ public class MessageFragment extends Fragment {
     private void init() {
         //设置标题栏
     	mApplication = (MyApplication)(getActivity().getApplication());
-        
-//        mMessageEntityList=new ArrayList<MessageTabEntity>();
-//        
-//        mMessageEntityList.add(new MessageTabEntity("徐豪","我睡了周强女友，你别跟他说","2015-8-1"));
-//        mMessageEntityList.add(new MessageTabEntity("周强","徐豪是不是睡了我女友","2015-8-1"));
-//        mMessageEntityList.add(new MessageTabEntity("张凯强","我看到徐豪睡了周强女友","2015-8-1"));
-//
-//        
-       
         mMessageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,

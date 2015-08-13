@@ -54,7 +54,8 @@ public class ChatActivity extends Activity {
 	private Handler handler;
 	private ImageView backButtonImageView;
 	private MyApplication mApplication;
-	private String groupId ;
+	
+	private String groupId ;//分组的唯一标号，是Group的objectId
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
