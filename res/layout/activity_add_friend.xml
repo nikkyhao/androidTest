@@ -7,7 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.xuhao.activity.AddFriendActivity" >
+    tools:context="com.xuhao.c_friendlist.AddFriendActivity" >
 
     <EditText
         android:layout_width="wrap_content"

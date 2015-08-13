@@ -23,6 +23,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.androidtestproject.R;
+import com.xuhao.c_friendlist.FriendListFragment;
+import com.xuhao.c_message.MessageFragment;
+import com.xuhao.c_schedule.ScheduleFragment;
+import com.xuhao.c_usercenter.UserCenterFragment;
 
 
 public class MainActivity extends Activity {
@@ -86,22 +90,22 @@ public class MainActivity extends Activity {
         });
         mDeynaimic.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {//这个是个人中心
                 FragmentManager fm=getFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
-                NearByFragment dynamicFragment=new NearByFragment();
-                ft.replace(R.id.fl_content, dynamicFragment,MainActivity.TAG);
+                UserCenterFragment userCenterFragment=new UserCenterFragment();
+                ft.replace(R.id.fl_content, userCenterFragment,MainActivity.TAG);
                 ft.commit();
                 setButton(v);
             }
         });
         mSetting.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {//这个是个人中心
+            public void onClick(View v) {//这个是日程界面
                 FragmentManager fm=getFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
-                UserInfoFragment settingFragment=new UserInfoFragment();
-                ft.replace(R.id.fl_content, settingFragment,MainActivity.TAG);
+                ScheduleFragment scheduleFragment=new ScheduleFragment();
+                ft.replace(R.id.fl_content, scheduleFragment,MainActivity.TAG);
                 ft.commit();
                 setButton(v);
             }

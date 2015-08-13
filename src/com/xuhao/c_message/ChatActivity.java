@@ -1,6 +1,7 @@
-package com.xuhao.activity;
+package com.xuhao.c_message;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +11,10 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SQLQueryListener;
 
 import com.example.androidtestproject.R;
+import com.xuhao.application.MyApplication;
+import com.xuhao.entity.ChatEntity;
 import com.xuhao.javaBean.Messages;
+import com.xuhao.utility.Util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -38,18 +42,18 @@ import android.widget.TextView;
 
 
 public class ChatActivity extends Activity {
-	private TitleBarView mTitleBarView;
+	private TextView title;
 	private int friendId;
 	private String friendName;
-	private ListView chatMeessageListView;
+	private ListView chatMessageListView;
 	private ChatMessageAdapter chatMessageAdapter;
 	private Button sendButton;
 	private ImageButton emotionButton;
 	private EditText inputEdit;
 	private List<ChatEntity> chatList;
 	private Handler handler;
-	
-	
+	private ImageView backButtonImageView;
+	private MyApplication mApplication;
 	private String groupId ;
 	
 	@Override
@@ -62,60 +66,76 @@ public class ChatActivity extends Activity {
 		friendId = intent.getIntExtra("friendId", 0);
 		groupId = intent.getStringExtra("groupId");
 		Log.d("present group ID",groupId);
+		chatList = new ArrayList<ChatEntity>();
 		initViews();
 		initEvents();
 		findMessageOfGroup(groupId);
 	}
 
-
 	protected void initViews() {
 		// TODO Auto-generated method stub
-		mTitleBarView = (TitleBarView) findViewById(R.id.title_bar);
-		mTitleBarView.setCommonTitle(View.GONE, View.VISIBLE, View.GONE);
-		mTitleBarView.setTitleText("与" + friendName + "对话");
-		chatMeessageListView = (ListView) findViewById(R.id.chat_Listview);
+	        mApplication =(MyApplication)getApplication();
+		title = (TextView) findViewById(R.id.chat_title_title);
+		title.setText("与" + friendName + "对话");
+		chatMessageListView = (ListView) findViewById(R.id.chat_Listview);
 		sendButton = (Button) findViewById(R.id.chat_btn_send);
 		emotionButton = (ImageButton) findViewById(R.id.chat_btn_emote);
 		inputEdit = (EditText) findViewById(R.id.chat_edit_input);
-
+		backButtonImageView = (ImageView)findViewById(R.id.common_title_back);
 	}
 
-
 	protected void initEvents() {
-		chatMessageAdapter = new ChatMessageAdapter(ChatActivity.this,chatList);
-		chatMeessageListView.setAdapter(chatMessageAdapter);
 		sendButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				String content = inputEdit.getText().toString();
 				inputEdit.setText("");
 				ChatEntity chatMessage = new ChatEntity();
 				chatMessage.setContent(content);
-
-				chatMessage.setReceiverId(friendId);
+				
+				chatMessage.setReceiverId(12345);//这里应该是根据点击的界面确定，先设上一个值
 				chatMessage.setMessageType(ChatEntity.SEND);
 				Date date = new Date();
 				SimpleDateFormat sdf = new SimpleDateFormat("MM-dd hh:mm:ss");
 				String sendTime = sdf.format(date);
 				chatMessage.setSendTime(sendTime);
 				chatList.add(chatMessage);
+				chatMessageAdapter = new ChatMessageAdapter(ChatActivity.this,chatList);
+				chatMessageListView.setAdapter(chatMessageAdapter);
 			}
 		});
-
-		}
+		backButtonImageView.setOnClickListener(new OnClickListener() {
+		    @Override
+		    public void onClick(View v) {
+			setResult(1);
+			mApplication.isGroupListChanged = true;//这个其实不应该在这个地方写，但是以后再说吧
+			ChatActivity.this.finish();
+			
+		    }
+		});
+		emotionButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(ChatActivity.this,AddPlansActivity.class);
+				startActivity(intent);
+			}
+		});	
+	}
 	class ChatMessageAdapter extends BaseAdapter {
 		private List<ChatEntity> chatEntities;
 		private LayoutInflater mInflater;
-		private Context mContext0;
+		private Context mContext;
 
 		public ChatMessageAdapter(Context context, List<ChatEntity> vector) {
 			this.chatEntities = vector;
-			mInflater = LayoutInflater.from(context);
-			mContext0 = context;
+			mInflater = LayoutInflater.from(context); 
+			mContext = context;
 		}
 
 		@Override
 		public int getCount() {
-			return 0;
+			return chatEntities.size();
 		}
 
 		@Override
@@ -150,10 +170,10 @@ public class ChatActivity extends Activity {
 					.findViewById(R.id.message_user_userphoto);
 			leftMessageView = (TextView) view.findViewById(R.id.friend_message);
 			rightMessageView = (TextView) view.findViewById(R.id.user_message);
+			
 			if (chatEntity.getMessageType() == ChatEntity.SEND) {
 				rightLayout.setVisibility(View.VISIBLE);
 				leftLayout.setVisibility(View.GONE);
-
 
 				rightMessageView.setText(chatEntity.getContent());
 			} else if (chatEntity.getMessageType() == ChatEntity.RECEIVE) {// 本身作为接收方

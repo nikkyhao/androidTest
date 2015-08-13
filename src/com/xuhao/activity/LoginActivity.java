@@ -21,8 +21,8 @@ import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SQLQueryListener;
 
-import com.example.androidtestproject.QQActivity;
 import com.example.androidtestproject.R;
+import com.xuhao.application.MyApplication;
 import com.xuhao.javaBean.User;
 
 public class LoginActivity extends Activity {
@@ -109,7 +109,7 @@ public class LoginActivity extends Activity {
 
     
     public void QQLogIn(View source){
-    	Intent intent = new Intent(LoginActivity.this,QQActivity.class);
+    	Intent intent = new Intent(LoginActivity.this,QQLogInActivity.class);
     	startActivity(intent);
     }
 //以下是一些常用方法

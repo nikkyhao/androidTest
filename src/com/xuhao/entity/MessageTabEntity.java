@@ -1,4 +1,4 @@
-package com.xuhao.activity;
+package com.xuhao.entity;
 
 import java.sql.Date;
 

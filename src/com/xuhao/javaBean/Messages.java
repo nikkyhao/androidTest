@@ -6,6 +6,9 @@ import cn.bmob.v3.datatype.BmobDate;
 import cn.bmob.v3.datatype.BmobPointer;
 
 public class Messages extends BmobObject{
+	public static final int  RECEIVE = 0;
+	public static final int SEND = 1;
+    
     public String getContent() {
         return content;
     }

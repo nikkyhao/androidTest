@@ -1,4 +1,4 @@
-package com.xuhao.activity;
+package com.xuhao.c_message;
 
 //import android.support.v4.app.Fragment;
 //import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
@@ -30,6 +30,8 @@ import cn.bmob.v3.listener.SQLQueryListener;
 import cn.bmob.v3.listener.SaveListener;
 
 import com.example.androidtestproject.R;
+import com.xuhao.application.MyApplication;
+import com.xuhao.entity.MessageTabEntity;
 import com.xuhao.javaBean.Group;
 import com.xuhao.javaBean.GroupRelation;
 import com.xuhao.javaBean.Messages;
@@ -98,7 +100,7 @@ public class MessageFragment extends Fragment {
                         intent.putExtra("friendName", chooseMessageEntity.getName());
                         intent.putExtra("friendId", chooseMessageEntity.getSenderId());
                         intent.putExtra("groupId", chooseMessageEntity.getGroupId());
-                        startActivity(intent);
+                        startActivityForResult(intent, 2);
                         
                         //并不知道下面这些是判断什么的。。
                         if (chooseMessageEntity.getMessageType() == MessageTabEntity.MAKE_FRIEND_REQUEST)
@@ -230,6 +232,7 @@ public class MessageFragment extends Fragment {
         }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	if(resultCode ==5){//是addGroup 的返回
 	if(mApplication.isGroupListChanged){
 	        getGroupList();
 	        mApplication.isGroupListChanged = false;
@@ -243,7 +246,21 @@ public class MessageFragment extends Fragment {
 	       		 adapter = new FriendMessageAdapter(mContext, mMessageEntityList);
 	             mMessageListView.setAdapter(adapter);
 			}
-	
+	}else if (resultCode == 1){//是ChatActivity的返回
+	    if(mApplication.isGroupListChanged){
+	        getGroupList();
+	        mApplication.isGroupListChanged = false;
+	        }else {
+	        	List<Group> grouplist =mApplication.getGroupList();
+	        	 mMessageEntityList=new ArrayList<MessageTabEntity>();
+	       		 for(int i =0;i<grouplist.size();i++){
+	       			 Group current=grouplist.get(i);
+	       			 mMessageEntityList.add(new MessageTabEntity(current.getName(),current.getName(),current.getCreatedAt(),current.getObjectId()));
+	       		 	}
+	       		 adapter = new FriendMessageAdapter(mContext, mMessageEntityList);
+	             mMessageListView.setAdapter(adapter);
+			}
+	}
     }
     
     

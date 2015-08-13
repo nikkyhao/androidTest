@@ -1,4 +1,4 @@
-package com.xuhao.activity;
+package com.xuhao.c_schedule;
 
 import android.app.Fragment;
 
@@ -6,7 +6,7 @@ import android.app.Fragment;
 /**
  * Created by ritaa on 2015/8/1.
  */
-public class UserInfoFragment extends Fragment{
+public class ScheduleFragment extends Fragment{
 
 
 

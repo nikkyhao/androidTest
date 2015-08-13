@@ -1,4 +1,4 @@
-package com.xuhao.activity;
+package com.xuhao.c_friendlist;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,6 +15,7 @@ import com.example.androidtestproject.R;
 import com.example.androidtestproject.R.id;
 import com.example.androidtestproject.R.layout;
 import com.example.androidtestproject.R.menu;
+import com.xuhao.application.MyApplication;
 import com.xuhao.javaBean.FriendRelation;
 import com.xuhao.javaBean.User;
 

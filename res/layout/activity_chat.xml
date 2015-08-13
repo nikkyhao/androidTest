@@ -3,10 +3,39 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <com.xuhao.activity.TitleBarView
-        android:id="@+id/title_bar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="48dp"
+        android:background="#289be5" >
+
+        <ImageView
+            android:id="@+id/common_title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/common_title_back_selector" />
+
+        <TextView
+            android:id="@+id/chat_title_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/white"
+            android:text=""
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/btn_addgroup_create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:text=""
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/chat_Listview"
@@ -31,7 +60,7 @@
             android:layout_marginLeft="4dip"
             android:layout_weight="1"
             android:background="@drawable/btn_chatbtn2"
-            android:src="@drawable/ic_chat_emote_normal" />
+            android:src="@drawable/ic_chat_plus_normal" />
 
         <EditText
             android:id="@+id/chat_edit_input"

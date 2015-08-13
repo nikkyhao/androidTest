@@ -1,4 +1,4 @@
-package com.xuhao.activity;
+package com.xuhao.c_friendlist;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -23,8 +23,9 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SQLQueryListener;
 
 import com.example.androidtestproject.R;
-import com.example.androidtestproject.UserListActivity;
+import com.xuhao.application.MyApplication;
 import com.xuhao.javaBean.*;
+import com.xuhao.utility.Util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -169,11 +170,11 @@ public class FriendListFragment extends Fragment{
                   public void run() {
              	 Iterator<User> iterator = mFriendList.iterator();
        		  List<Bitmap> bmp_list = new ArrayList<Bitmap>();
-       		  mApplication.setBmp_list(bmp_list);
        		  while(iterator.hasNext()){
        		      //注意这里如果服务器上照片为空的话会报空指针错
-       		      bmp_list.add(getBitmap(iterator.next().getPortrait().getFileUrl(mContext)));
+       		      bmp_list.add(Util.getbitmap(iterator.next().getPortrait().getFileUrl(mContext)));
        		  }
+       		  mApplication.setBmp_list(bmp_list);
                       Message msg = new Message();
                       msg.obj =bmp_list;
                       msg.what = 0;
@@ -204,41 +205,6 @@ public class FriendListFragment extends Fragment{
 	query.doSQLQuery(mContext,sqlString, new sqlListener());
     }
     
-    public static Bitmap getBitmap(String path) {
-	    URL url = null;
-	    try {
-		url = new URL(path);
-	    } catch (MalformedURLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
-	    HttpURLConnection conn = null;
-	    try {
-		conn = (HttpURLConnection)url.openConnection();
-	    } catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
-	    conn.setConnectTimeout(5000);
-	    try {
-		conn.setRequestMethod("GET");
-	    } catch (ProtocolException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
-	    try {
-		if(conn.getResponseCode() == 200){
-		InputStream inputStream = conn.getInputStream();
-		Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-		return bitmap;
-		}
-	    } catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
-	    return null;
-
-	    }
     class addFriendButtonListener implements View.OnClickListener{
 	@Override
 	public void onClick(View v) {

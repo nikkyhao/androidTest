@@ -1,4 +1,4 @@
-package com.xuhao.activity;
+package com.xuhao.application;
 import java.util.List;
 
 import com.xuhao.javaBean.Group;
@@ -8,6 +8,7 @@ import cn.bmob.v3.Bmob;
 import android.app.Application;
 import android.graphics.Bitmap;
 import android.util.Log;
+import android.view.Window;
 
 
 public class MyApplication extends Application{

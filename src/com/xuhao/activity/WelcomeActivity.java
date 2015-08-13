@@ -3,8 +3,8 @@ package com.xuhao.activity;
 
 
 import cn.bmob.v3.Bmob;
-
 import com.example.androidtestproject.R;
+import com.xuhao.utility.SpUtil;
 
 import android.app.Activity;
 import android.content.Context;

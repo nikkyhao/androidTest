@@ -17,7 +17,7 @@
     <uses-permission android:name="android.permission.READ_LOGS" />
 
     <application
-        android:name="com.xuhao.activity.MyApplication"
+        android:name="com.xuhao.application.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".QQActivity"
+            android:name="com.xuhao.activity.QQLogInActivity"
             android:label="QQ" >
             <intent-filter>
                 <action android:name="android.intent.action.QQ" />
@@ -81,13 +81,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.xuhao.activity.ChatActivity" >
+        <activity android:name="com.xuhao.c_message.ChatActivity" >
         </activity>
-        <activity android:name="com.xuhao.activity.AddGroupActivity" />
+        <activity android:name="com.xuhao.c_message.AddGroupActivity" />
         <activity
-            android:name="com.xuhao.activity.AddFriendActivity"
+            android:name="com.xuhao.c_friendlist.AddFriendActivity"
             android:label="@string/title_activity_add_friend" >
         </activity>
+        <activity android:name="com.xuhao.c_message.SelectDateActivity" />
+        <activity android:name="com.xuhao.c_message.AddPlansActivity" />
+        <activity android:name="com.xuhao.c_message.SelectTimeActivity" />
+
     </application>
 
 </manifest>

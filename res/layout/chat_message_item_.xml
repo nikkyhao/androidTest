@@ -98,10 +98,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_msgbox_send_normal"
-                android:orientation="horizontal" >
+                android:orientation="vertical" >
 
                 <TextView
                     android:id="@+id/user_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="你好"
+                     android:layout_gravity="center"
+                    android:textColor="@color/text_color"
+                    android:textSize="16sp" />
+                   <TextView
+                    android:id="@+id/user_message2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="你好"
