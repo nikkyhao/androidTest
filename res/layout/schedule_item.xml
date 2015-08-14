@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="#fff2eee8"  
+    android:orientation="vertical"  
+    android:paddingRight="20dp">
+    <View  
+        android:id="@+id/view_0"  
+        android:layout_width="4dp"  
+        android:layout_height="25dp"  
+        android:layout_marginLeft="73dp"  
+        android:background="#ffe8e4dd" /> 
+     <View  
+        android:id="@+id/view_1"  
+        android:layout_width="4dp"  
+        android:layout_height="25dp"  
+        android:layout_below="@+id/layout_2"  
+        android:layout_marginLeft="73dp"  
+        android:background="#ffe8e4dd" />  
+  
+    <ImageView  
+        android:id="@+id/image"  
+        android:layout_width="25dp"  
+        android:layout_height="25dp"  
+        android:layout_below="@+id/view_1"  
+        android:layout_marginLeft="63dp"  
+        android:src="@drawable/blue_cricle" />  
+  
+    <View  
+        android:id="@+id/view_2"  
+        android:layout_width="4dp"  
+        android:layout_height="100dp"  
+        android:layout_below="@+id/image"  
+        android:layout_marginLeft="73dp"  
+        android:background="#ffe8e4dd" />  
+    <ImageView  
+        android:id="@+id/image_1"  
+        android:layout_width="60dp"  
+        android:layout_height="60dp"  
+        android:layout_alignParentLeft="true"  
+        android:layout_centerVertical="true"  
+        android:layout_marginLeft="5dp"
+        android:layout_below="@+id/view_0"  
+        android:src="@drawable/channel_qq" />  
+     <RelativeLayout 
+        android:layout_width="fill_parent"  
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/image">
+          <TextView  
+		        android:id="@+id/text_show_time"  
+		        android:layout_width="wrap_content"  
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="30dp"  
+		        android:text="测试数据1" 
+		        android:textSize="12dp" />  
+		    <RelativeLayout
+		        android:id="@+id/relative"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@+id/text_show_time"
+		        android:background="@drawable/bundle"
+		        android:padding="10dp" >
+		       
+		        <TextView  
+		            android:id="@+id/title"  
+		            android:layout_width="wrap_content"  
+		            android:layout_height="wrap_content"  
+		            android:layout_centerHorizontal="true"  
+		            android:layout_centerVertical="true"  
+		            android:ellipsize="end"  
+		            android:maxEms="7"  
+		            android:paddingLeft="5dp"  
+		            android:singleLine="true"  
+		            android:text="测试数据"  
+		            android:textSize="12sp" />  
+		  
+		   </RelativeLayout>  
+       </RelativeLayout>
+</RelativeLayout>
