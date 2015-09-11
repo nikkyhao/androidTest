@@ -36,9 +36,10 @@ public class Util {
         }
         return bitmap;
     }
-    
+    static Toast toast ;
     public static void showToast(Context mContext , String s){
-    	Toast toast = Toast.makeText(mContext, s, Toast.LENGTH_SHORT);
+    	toast = new Toast(mContext);
+    	toast.setText(s);
     	toast.show();
         }
     

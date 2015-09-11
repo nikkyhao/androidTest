@@ -1,28 +1,41 @@
 package com.xuhao.c_message;
+import java.util.Date;
+
+import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
+import cn.bmob.v3.datatype.BmobDate;
 
 import com.example.androidtestproject.R;
+import com.xuhao.javaBean.Messages;
+import com.xuhao.utility.Util;
 
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class AddPlansActivity extends Activity{
-  	 int requestCode = 0;
-  	 //显示日期和时间的按钮
-       ImageView btn_selectdate,btn_selecttime;
-       TextView Dateshow,Timeshow;
-   //完成按钮
-       Button btn_finish;
-      //回退按钮
-       ImageView btn_back;
+    int requestCode = 0;
+    // 显示日期和时间的按钮
+    ImageView btn_selectdate, btn_selecttime;
+    TextView Dateshow, Timeshow;
+    // 完成按钮
+    Button btn_finish;
+    // 回退按钮
+    ImageView btn_back;
+    //日程内容显示框
+    EditText contentEditText;
+       
+       private int year,month,day,hour,minute;
+       private String groupId;
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
@@ -40,10 +53,14 @@ public class AddPlansActivity extends Activity{
 		Timeshow=(TextView)findViewById(R.id.time_show);
 		btn_finish = (Button)findViewById(R.id.work_fragment_publish_btn);
 		btn_back = (ImageView)findViewById(R.id.common_title_back);
+		contentEditText = (EditText)findViewById(R.id.work_fragment_note);
 	}
 	private void init() {
 		// TODO Auto-generated method stub
 	//	Dateshow.setText("");
+	    	initShowTimeAndDate();
+	    	contentEditText.setText("要干什么呢");
+	    	groupId=getIntent().getStringExtra("groupId");
 		btn_selectdate.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -61,6 +78,34 @@ public class AddPlansActivity extends Activity{
 				startActivityForResult(intent, requestCode);
 			}
 		});
+		btn_finish.setOnClickListener(new OnClickListener() {
+		    
+		    @Override
+		    public void onClick(View v) {
+			if (Dateshow.getText().equals("请选择日期")) {
+			    Util.showToast(AddPlansActivity.this, "您还未选择日期");
+			}
+			if(Timeshow.getText().equals("请选择时间")){
+			    Util.showToast(AddPlansActivity.this, "您还未选择时间");
+			}
+			else {//保证时间和日期都有了，现在可以传给数据库数据了
+			    Util.showToast(AddPlansActivity.this,year+"-"+month+"-"+day);
+			    Messages message = new Messages();
+			    message.setExecute_Date(new BmobDate(new Date(year-1900,month,day,hour,minute)));
+			    message.setRelease_date(new BmobDate(new Date()));
+			    message.setContent(contentEditText.getText().toString());
+			    message.setGroupId(groupId);
+			    message.save(AddPlansActivity.this);//传到数据库
+			}
+		    }
+		});
+		btn_back.setOnClickListener(new OnClickListener() {
+		    
+		    @Override
+		    public void onClick(View v) {
+			AddPlansActivity.this.finish();
+		    }
+		});
 	}
 	
 	
@@ -70,18 +115,22 @@ public class AddPlansActivity extends Activity{
 		super.onActivityResult(requestCode, resultCode, data);
 		if(resultCode==0){
 		Bundle bundle=data.getExtras();
-		int year=bundle.getInt("year");
-		int month=bundle.getInt("month");
-		int day=bundle.getInt("day");
+		year=bundle.getInt("year");
+		month=bundle.getInt("month");
+		day=bundle.getInt("day");
 		//Toast.makeText(this,year+"-"+month+"-"+day,Toast.LENGTH_LONG).show();
 		Dateshow.setText(year+"-"+month+"-"+day);
 		}else if(resultCode==1){
 			Bundle bundle=data.getExtras();
-			int hour=bundle.getInt("hour");
-			int minute=bundle.getInt("minute");
+			hour=bundle.getInt("hour");
+			minute=bundle.getInt("minute");
 			
 			//Toast.makeText(this,year+"-"+month+"-"+day,Toast.LENGTH_LONG).show();
 			Timeshow.setText(hour+":"+minute);	
 		}
+	}
+	private void initShowTimeAndDate(){
+		Dateshow.setText("请选择日期");
+		Timeshow.setText("请选择时间");	
 	}
 }

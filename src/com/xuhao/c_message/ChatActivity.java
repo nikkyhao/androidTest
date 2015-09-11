@@ -48,7 +48,7 @@ public class ChatActivity extends Activity {
 	private ListView chatMessageListView;
 	private ChatMessageAdapter chatMessageAdapter;
 	private Button sendButton;
-	private ImageButton emotionButton;
+	private ImageButton addPlanButton;
 	private EditText inputEdit;
 	private List<ChatEntity> chatList;
 	private Handler handler;
@@ -80,7 +80,7 @@ public class ChatActivity extends Activity {
 		title.setText("与" + friendName + "对话");
 		chatMessageListView = (ListView) findViewById(R.id.chat_Listview);
 		sendButton = (Button) findViewById(R.id.chat_btn_send);
-		emotionButton = (ImageButton) findViewById(R.id.chat_btn_emote);
+		addPlanButton = (ImageButton) findViewById(R.id.chat_btn_emote);
 		inputEdit = (EditText) findViewById(R.id.chat_edit_input);
 		backButtonImageView = (ImageView)findViewById(R.id.common_title_back);
 	}
@@ -113,12 +113,13 @@ public class ChatActivity extends Activity {
 			
 		    }
 		});
-		emotionButton.setOnClickListener(new OnClickListener() {
+		addPlanButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				Intent intent=new Intent(ChatActivity.this,AddPlansActivity.class);
+				intent.putExtra("groupId", groupId);
 				startActivity(intent);
 			}
 		});	
