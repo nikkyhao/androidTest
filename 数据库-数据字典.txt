@@ -26,7 +26,7 @@ Messages
 (
 teacher - Pointer<Teacher>
 release_date - Date
-execute_date - Date
+execute_Date - Date
 content - String
 group -Pointer<Group>
 )
@@ -44,7 +44,7 @@ school -String
 major -String
 gender - String
 nickName - String
-identity - String (Ñ§Éú»òÀÏÊ¦£©
+identity - String (Ñ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¦ï¿½ï¿½
 portrait - BmobFile
 description - String
 
@@ -57,7 +57,7 @@ Group
 (
 name - String
 groupPortrait
-£©
+ï¿½ï¿½
 
 
 GroupRelation

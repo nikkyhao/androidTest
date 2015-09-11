@@ -3,7 +3,6 @@ package com.xuhao.javaBean;
 import android.R.string;
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobDate;
-import cn.bmob.v3.datatype.BmobPointer;
 
 public class Messages extends BmobObject{
 	public static final int  RECEIVE = 0;
