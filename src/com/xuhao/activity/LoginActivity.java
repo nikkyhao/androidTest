@@ -37,7 +37,7 @@ public class LoginActivity extends Activity {
     //用户名和密码的内容
     String accountString = null;
     String passwordString  = null;
-    
+    // xuhao 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

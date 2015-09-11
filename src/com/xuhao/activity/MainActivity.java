@@ -93,8 +93,8 @@ public class MainActivity extends Activity {
             public void onClick(View v) {//这个是个人中心
                 FragmentManager fm=getFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
-                UserCenterFragment userCenterFragment=new UserCenterFragment();
-                ft.replace(R.id.fl_content, userCenterFragment,MainActivity.TAG);
+                ScheduleFragment scheduleFragment=new ScheduleFragment();
+                ft.replace(R.id.fl_content, scheduleFragment,MainActivity.TAG);
                 ft.commit();
                 setButton(v);
             }
@@ -104,8 +104,8 @@ public class MainActivity extends Activity {
             public void onClick(View v) {//这个是日程界面
                 FragmentManager fm=getFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
-                ScheduleFragment scheduleFragment=new ScheduleFragment();
-                ft.replace(R.id.fl_content, scheduleFragment,MainActivity.TAG);
+                UserCenterFragment userCenterFragment=new UserCenterFragment();
+                ft.replace(R.id.fl_content, userCenterFragment,MainActivity.TAG);
                 ft.commit();
                 setButton(v);
             }

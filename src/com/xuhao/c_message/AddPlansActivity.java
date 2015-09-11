@@ -8,16 +8,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class AddPlansActivity extends Activity{
+  	 int requestCode = 0;
+  	 //显示日期和时间的按钮
        ImageView btn_selectdate,btn_selecttime;
-       int requestCode=0;
        TextView Dateshow,Timeshow;
-   
+   //完成按钮
+       Button btn_finish;
+      //回退按钮
+       ImageView btn_back;
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
@@ -28,11 +33,13 @@ public class AddPlansActivity extends Activity{
    }
 	
 	private void findView() {
-		// TODO Auto-generated method stub
+		// 分别是选择按钮
 		btn_selectdate=(ImageView)findViewById(R.id.select_date);
 		Dateshow=(TextView)findViewById(R.id.date_show);
 		btn_selecttime=(ImageView)findViewById(R.id.select_time);
 		Timeshow=(TextView)findViewById(R.id.time_show);
+		btn_finish = (Button)findViewById(R.id.work_fragment_publish_btn);
+		btn_back = (ImageView)findViewById(R.id.common_title_back);
 	}
 	private void init() {
 		// TODO Auto-generated method stub

@@ -74,8 +74,8 @@
                 android:layout_centerVertical="true"
                 android:src="@drawable/pcb_right_arrow" />
         </RelativeLayout>
-        <TextView
-            android:id="@+id/item_text_image_title"
+        <TextView		
+            android:id="@+id/lable_finishtime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -103,7 +103,7 @@
                 android:src="@drawable/pcb_right_arrow" />
         </RelativeLayout>
         <TextView
-            android:id="@+id/item_text_image_title"
+            android:id="@+id/lable_schedule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
