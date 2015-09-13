@@ -1,37 +1,86 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+     >
 
     <ImageView
         android:id="@+id/QQimage"
-        android:layout_width="122dp"
-        android:layout_height="136dp"
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/ic_launcher" />
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/ic_launcher"
+        
+         />
 
-    <TextView
+    <LinearLayout
         android:id="@+id/openid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="openid" />
+        android:layout_below="@id/QQimage"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal" 
+       
+        >
 
-    <TextView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="openid:" />
+         <TextView
+            android:id="@+id/openidcontent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1345545（测试数据）" />
+    </LinearLayout>
+    
+    <LinearLayout
         android:id="@+id/nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="nickname" />
+        android:layout_below="@id/openid"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal" 
+         android:layout_alignLeft="@id/openid">
 
-    <TextView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="昵称" />
+         <TextView
+            android:id="@+id/nicknamecontent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="小豪豪（测试数据）" />
+    </LinearLayout>
+
+<LinearLayout
         android:id="@+id/gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="gender" />
+        android:layout_below="@id/nickname"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:layout_alignLeft="@id/nickname" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="性别" />
+         <TextView
+            android:id="@+id/gendercontent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="男（测试数据）" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="注册并登录" />
+        android:text="注册并登录" 
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/gender"
+        />
 
-</LinearLayout>
+</RelativeLayout>

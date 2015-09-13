@@ -44,9 +44,9 @@ public class QQLogInActivity extends Activity  {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 		setContentView(R.layout.activity_qq_login);
 		userLogo = (ImageView)findViewById(R.id.QQimage);
-		openidTextView = (TextView)findViewById(R.id.openid);
-		nicknameTextView = (TextView)findViewById(R.id.nickname);
-		genderTextView = (TextView)findViewById(R.id.gender);
+		openidTextView = (TextView)findViewById(R.id.openidcontent);
+		nicknameTextView = (TextView)findViewById(R.id.nicknamecontent);
+		genderTextView = (TextView)findViewById(R.id.gendercontent);
 		LogIn();
 	}
 	public void LogIn(){
