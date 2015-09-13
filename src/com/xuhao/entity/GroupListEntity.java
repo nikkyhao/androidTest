@@ -5,7 +5,7 @@ import java.sql.Date;
 /**
  * 类名：MessageEntity 说明：messageFragment显示的消息
  */
-public class MessageTabEntity {
+public class GroupListEntity {
 	public static final int MAKE_FRIEND_REQUEST = 0;// 收到的是交友的请求
 	public static final int MAKE_FRIEND_RESPONSE_ACCEPT = 1;//收到回复，对方接受
 	public static final int MAKE_FRIEND_RESPONSE_REJECT = 2;//收到回复，对方拒绝
@@ -23,7 +23,7 @@ public class MessageTabEntity {
 	public void setGroupId(String groupIdString) {
 		this.groupId = groupIdString;
 	}
-	public MessageTabEntity(String name,String content,String sendTime,String groupId){
+	public GroupListEntity(String name,String content,String sendTime,String groupId){
 		this.name=name;
 		this.content=content;
 		this.sendTime=sendTime;

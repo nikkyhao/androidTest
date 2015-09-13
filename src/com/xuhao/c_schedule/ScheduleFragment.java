@@ -138,9 +138,6 @@ public class ScheduleFragment extends Fragment{
 		   		}
 		   	    }
 		   	    else {//查询失败，出现异常
-		   		
-		   		
-		   		
 		   		Util.showToast(mContext,"错误码:+e.getErrorCode()"+"错误描述"+e.getMessage());
 		   	    }
 		   	  

@@ -10,13 +10,6 @@
         android:layout_gravity="center_vertical"
         android:src="@drawable/ic_launcher" />
 
-    <Button
-        android:id="@+id/QQLogButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="LogIn"
-        android:text="LogIn" />
-
     <TextView
         android:id="@+id/openid"
         android:layout_width="wrap_content"
@@ -37,12 +30,8 @@
 
     <Button
         android:id="@+id/button1"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="264dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.53"
-        android:text="NextActivity" 
-        android:onClick="jumpToNext"
-        />
+        android:text="注册并登录" />
 
 </LinearLayout>

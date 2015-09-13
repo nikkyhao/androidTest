@@ -126,7 +126,7 @@ public class FriendListFragment extends Fragment{
             User user = mFriendList.get(position);
             //分别获取头像，姓名，以及个人介绍
            
-            String name = mFriendList.get(position).getUserName();
+            String name = mFriendList.get(position).getNickName();
             String briefIntro = mFriendList.get(position).getDescription();
             convertView = mInflater.inflate(R.layout.friend_list_item,
                     null); //表示一个好友的信息（一行）

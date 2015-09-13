@@ -35,7 +35,7 @@
             android:inputType="text"
             android:hint="@string/et_account_hint"
             android:background="@drawable/login_et_bg"
-            android:maxLength="18"
+            android:maxLength="30"
             android:layout_margin="2dp"
             android:text="xuhao"
             />
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:padding="5dp"
             android:inputType="textPassword"
-            android:maxLength="18"
+            android:maxLength="30"
             android:hint="@string/et_password_hint"
             android:background="@drawable/login_et_bg"
             android:layout_margin="2dp"

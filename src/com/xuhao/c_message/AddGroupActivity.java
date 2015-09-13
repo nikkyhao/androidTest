@@ -69,7 +69,7 @@ public class AddGroupActivity extends Activity{
           @Override
           public void onItemClick(AdapterView<?> parent, View view,
                                   int position, long id) {
-          	
+          	//点击每个好友的事件
           }
       });
 	  mFriendListView.setAdapter(new AddGroupAdapter(mContext, friendList));
@@ -127,7 +127,7 @@ public class AddGroupActivity extends Activity{
             TextView introView;
             User user = mFriendList.get(position);
             //分别获取头像，姓名，以及个人介绍
-            String name = mFriendList.get(position).getUserName();
+            String name = mFriendList.get(position).getNickName();
             String briefIntro = mFriendList.get(position).getDescription();
             convertView=mInflater.inflate(R.layout.addtogroup_item,
                     null); //表示一个好友的信息（一行）
@@ -221,7 +221,7 @@ public class AddGroupActivity extends Activity{
 				User user = choosenFriendList.get(i);
 			string.append(user.getNickName()+"、");
 			}
-			string.append("的分组");
+			string.append(mApplication.getPresentUser().getNickName()+"的分组");
 			return string;
 		}
 		

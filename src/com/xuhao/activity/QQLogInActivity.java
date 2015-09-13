@@ -42,14 +42,14 @@ public class QQLogInActivity extends Activity  {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
-		setContentView(R.layout.activity_second);
-		logButton = (Button)findViewById(R.id.QQLogButton);
+		setContentView(R.layout.activity_qq_login);
 		userLogo = (ImageView)findViewById(R.id.QQimage);
 		openidTextView = (TextView)findViewById(R.id.openid);
 		nicknameTextView = (TextView)findViewById(R.id.nickname);
 		genderTextView = (TextView)findViewById(R.id.gender);
+		LogIn();
 	}
-	public void LogIn(View v){
+	public void LogIn(){
 	    System.out.println("Login Button");
 	    String mAppid = "1104708623";				//第一个参数就是上面所说的申请的APPID，第二个是全局的Context上下文，这句话实现了调用QQ登录       
 	    mTencent = Tencent.createInstance(mAppid,getApplicationContext()); /**通过这句代码，SDK实现了QQ的登录，这个方法有三个参数，第一个参数是context上下文，第二个参数SCOPO 是一个String类型的字符串，表示一些权限          官方文档中的说明：应用需要获得哪些API的权限，由“，”分隔。例如：SCOPE = “get_user_info,add_t”；所有权限用“all”           第三个参数，是一个事件监听器，IUiListener接口的实例，这里用的是该接口的实现类 */       
@@ -83,7 +83,6 @@ public class QQLogInActivity extends Activity  {
 	            //这样我们就拿到这个类了，之后的操作就跟上面的一样了，同样是解析JSON      
 	          
 	            info.getUserInfo(new IUiListener() {
-	        	 
 	                public void onComplete(final Object response) {
 	                    // TODO Auto-generated method stub
 	                    Log.e("QQ", "---------------111111"+response.toString());

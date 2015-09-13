@@ -52,7 +52,7 @@
 		        android:layout_width="wrap_content"  
 		        android:layout_height="wrap_content"
 		        android:layout_marginLeft="30dp"  
-		        android:text="测试数据1" 
+		        android:text="测试数据-时间" 
 		        android:textSize="12dp" />  
 		    <RelativeLayout
 		        android:id="@+id/relative"
@@ -72,7 +72,7 @@
 		            android:maxEms="7"  
 		            android:paddingLeft="5dp"  
 		            android:singleLine="true"  
-		            android:text="测试数据"  
+		            android:text="测试数据-内容"  
 		            android:textSize="12sp" />  
 		  
 		   </RelativeLayout>  
