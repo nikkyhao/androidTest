@@ -5,12 +5,6 @@ import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.datatype.BmobRelation;
 
 public class User extends BmobObject{
-    public BmobFile getPortrait() {
-        return portrait;
-    }
-    public void setPortrait(BmobFile portrait) {
-        this.portrait = portrait;
-    }
     public String getIdentity() {
         return identity;
     }
@@ -42,10 +36,10 @@ public class User extends BmobObject{
         this.gender = gender;
     }
     public String getQqOpenId() {
-        return qqOpenId;
+        return qqOpenID;
     }
-    public void setQqOpenId(String qqOpenId) {
-        this.qqOpenId = qqOpenId;
+    public void setQqOpenId(String qqOpenID) {
+        this.qqOpenID = qqOpenID;
     }
     public String getUserName() {
         return username;
@@ -71,7 +65,7 @@ public class User extends BmobObject{
     public void setSex(String sex) {
         this.gender = sex;
     }
-    private String qqOpenId;
+    private String qqOpenID;
     private String nickName;//默认情况下等于用户名或者是QQ昵称
     private String username;
     private String password;
@@ -87,5 +81,11 @@ public class User extends BmobObject{
     }
     public void setDescription(String description) {
         this.description = description;
+    }
+    public BmobFile getPortrait() {
+        return portrait;
+    }
+    public void setPortrait(BmobFile portrait) {
+        this.portrait = portrait;
     }
 }

@@ -1,7 +1,9 @@
 package com.xuhao.activity;
 
+import java.io.File;
 import java.net.PasswordAuthentication;
 
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.InitListener;
 import cn.bmob.v3.listener.SaveListener;
 

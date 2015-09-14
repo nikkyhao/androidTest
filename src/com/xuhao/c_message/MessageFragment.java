@@ -108,7 +108,7 @@ public class MessageFragment extends Fragment {
         if(mApplication.isGroupListChanged){
         getGroupList();
         mApplication.isGroupListChanged = false;
-        }else {
+        }else if(mApplication.getGroupList()!=null){
         	List<Group> grouplist =mApplication.getGroupList();
         	 mMessageEntityList=new ArrayList<GroupListEntity>();
        		 for(int i =0;i<grouplist.size();i++){

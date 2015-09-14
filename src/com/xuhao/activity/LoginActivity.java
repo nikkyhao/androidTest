@@ -62,6 +62,7 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
             	accountString = mAccount.getText().toString();
             	passwordString = mPassword.getText().toString();
+            	mLoginButton.setText("正在登录...");
             	String sqlString = "select * from User where username = '"+accountString+"' and password = '"+passwordString+"' ";
         	BmobQuery<User> query = new BmobQuery<User>();
         	query.doSQLQuery(LoginActivity.this,sqlString, new LogInListener());
@@ -109,6 +110,7 @@ public class LoginActivity extends Activity {
 
     
     public void QQLogIn(View source){
+	qqLogInButton.setText("正在登录...");
     	Intent intent = new Intent(LoginActivity.this,QQLogInActivity.class);
     	startActivity(intent);
     }

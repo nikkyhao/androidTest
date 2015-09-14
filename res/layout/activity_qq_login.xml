@@ -35,7 +35,7 @@
     </LinearLayout>
     
     <LinearLayout
-        android:id="@+id/nickname"
+        android:id="@+id/QQnickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/openid"
@@ -53,6 +53,15 @@
             android:layout_height="wrap_content"
             android:text="小豪豪（测试数据）" />
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/nickname"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/QQnickname"
+        android:layout_alignRight="@+id/openid"
+        android:layout_below="@id/QQnickname"
+        android:text="请填写昵称" />
 
 <LinearLayout
         android:id="@+id/gender"
@@ -75,10 +84,10 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="注册并登录" 
+        android:text="登录" 
         android:layout_centerHorizontal="true"
         android:layout_below="@id/gender"
         />

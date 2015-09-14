@@ -69,10 +69,16 @@ public class UserCenterFragment extends Fragment{
 	new Thread(){
 	    @Override
 	    public void run() {
+		try{
 		 portraitBitmap= Util.getbitmap(mApplication.getPresentUser().getPortrait().getFileUrl(mContent));
-		handler.sendEmptyMessage(0);
+		}catch(NullPointerException exception){
+		    //Util.showToast(mContent, "现在还没头像");
+		    interrupt();
+		}
+		 handler.sendEmptyMessage(0);
 	    }
 	}.start();
+	
 	String nickName = mApplication.getPresentUser().getNickName();
 	nickNameTextView.setText(nickName);
     }

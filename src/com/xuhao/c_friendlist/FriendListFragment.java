@@ -92,7 +92,7 @@ public class FriendListFragment extends Fragment{
         showToast("从网络获取好友列表");
         mApplication.isFriendListChanged = false;
         }
-        else{//如果不是第一次的话就从mApplication中获取
+        else if(mApplication.getFriendList()!=null){//如果不是第一次的话就从mApplication中获取
         	mFriendListView.setAdapter(new FriendListAdapter(mContext, mApplication.getFriendList(), mApplication.getBmp_list()));
         }
     }
