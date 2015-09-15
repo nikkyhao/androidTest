@@ -73,6 +73,8 @@ release_date - Date
 execute_date - Date
 content - String
 groupId - String
+saved - Boolean
+senderName - String
 )
 
 FriendRelation(

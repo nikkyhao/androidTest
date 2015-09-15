@@ -91,7 +91,7 @@
         <activity android:name="com.xuhao.c_message.SelectDateActivity" />
         <activity android:name="com.xuhao.c_message.AddPlansActivity" />
         <activity android:name="com.xuhao.c_message.SelectTimeActivity" />
-
+		<activity android:name="com.xuhao.c_schedule.AlarmActivity"/>
     </application>
 
 </manifest>

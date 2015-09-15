@@ -55,6 +55,7 @@
             android:textSize="16sp" />
 
         <RelativeLayout
+             android:id="@+id/select_date"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/item_layout_default" >
@@ -67,7 +68,7 @@
 	            android:gravity="center"/>
 
             <ImageView
-                android:id="@+id/select_date"
+               
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -83,6 +84,7 @@
             android:textSize="16sp" />
 
         <RelativeLayout
+            android:id="@+id/select_time"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/item_layout_default" >
@@ -95,7 +97,7 @@
 	            android:gravity="center"/>
 
             <ImageView
-                android:id="@+id/select_time"
+                
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

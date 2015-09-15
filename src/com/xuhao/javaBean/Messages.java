@@ -37,12 +37,18 @@ public class Messages extends BmobObject{
     private String content;
     private String groupId;
     private String senderName;
-
+    private Boolean saved = false;
     public String getSenderName() {
         return senderName;
     }
     public void setSenderName(String senderName) {
         this.senderName = senderName;
+    }
+    public Boolean isSaved() {
+        return saved;
+    }
+    public void setSaved(Boolean saved) {
+        this.saved = saved;
     }
 
 }

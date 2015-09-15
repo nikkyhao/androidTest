@@ -1,8 +1,10 @@
 package com.xuhao.c_message;
+import java.util.Calendar;
 import java.util.Date;
 
 import android.R.integer;
 import android.app.Activity;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import cn.bmob.v3.datatype.BmobDate;
 
@@ -20,13 +22,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class AddPlansActivity extends Activity{
     int requestCode = 0;
     // 显示日期和时间的按钮
-    ImageView btn_selectdate, btn_selecttime;
+    RelativeLayout btn_selectdate, btn_selecttime;
     TextView Dateshow, Timeshow;
     // 完成按钮
     Button btn_finish;
@@ -37,6 +41,7 @@ public class AddPlansActivity extends Activity{
       MyApplication mApplication = null;
        private int year,month,day,hour,minute;
        private String groupId;
+       Calendar currentTime = null;
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
@@ -48,9 +53,9 @@ public class AddPlansActivity extends Activity{
 	
 	private void findView() {
 		// 分别是选择按钮
-		btn_selectdate=(ImageView)findViewById(R.id.select_date);
+		btn_selectdate=(RelativeLayout)findViewById(R.id.select_date);
 		Dateshow=(TextView)findViewById(R.id.date_show);
-		btn_selecttime=(ImageView)findViewById(R.id.select_time);
+		btn_selecttime=(RelativeLayout)findViewById(R.id.select_time);
 		Timeshow=(TextView)findViewById(R.id.time_show);
 		btn_finish = (Button)findViewById(R.id.work_fragment_publish_btn);
 		btn_back = (ImageView)findViewById(R.id.common_title_back);
@@ -60,6 +65,7 @@ public class AddPlansActivity extends Activity{
 		// TODO Auto-generated method stub
 	//	Dateshow.setText("");
 	    mApplication = (MyApplication)getApplication();
+	    currentTime = Calendar.getInstance();
 	    	initShowTimeAndDate();
 	    	contentEditText.setText("要干什么呢");
 	    	groupId=getIntent().getStringExtra("groupId");
@@ -76,8 +82,18 @@ public class AddPlansActivity extends Activity{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent=new Intent(AddPlansActivity.this,SelectTimeActivity.class);
-				startActivityForResult(intent, requestCode);
+//				Intent intent=new Intent(AddPlansActivity.this,SelectTimeActivity.class);
+//				startActivityForResult(intent, requestCode);
+			   
+			    new TimePickerDialog(AddPlansActivity.this, 0, new TimePickerDialog.OnTimeSetListener() {
+			        @Override
+			        public void onTimeSet(TimePicker view, int hourOfDay, int cminute) {
+			    	// TODO Auto-generated method stub
+			    	hour = hourOfDay;
+			    	minute = cminute;
+			    	Timeshow.setText(hour+":"+minute);
+			        }
+			    }, hour, minute, true).show();
 			}
 		});
 		btn_finish.setOnClickListener(new OnClickListener() {
@@ -100,6 +116,8 @@ public class AddPlansActivity extends Activity{
 			    message.setSenderName(mApplication.getPresentUser().getNickName());
 			    message.save(AddPlansActivity.this);//传到数据库
 			}
+			AddPlansActivity.this.finish();
+			
 		    }
 		});
 		btn_back.setOnClickListener(new OnClickListener() {
@@ -127,13 +145,17 @@ public class AddPlansActivity extends Activity{
 			Bundle bundle=data.getExtras();
 			hour=bundle.getInt("hour");
 			minute=bundle.getInt("minute");
-			
 			//Toast.makeText(this,year+"-"+month+"-"+day,Toast.LENGTH_LONG).show();
 			Timeshow.setText(hour+":"+minute);	
 		}
 	}
 	private void initShowTimeAndDate(){
-		Dateshow.setText("请选择日期");
-		Timeshow.setText("请选择时间");	
+	    year = currentTime.get(Calendar.YEAR);
+	    month = currentTime.get(Calendar.MONTH);
+	    day = currentTime.get(Calendar.DAY_OF_MONTH);
+	    hour=currentTime.get(Calendar.HOUR_OF_DAY);
+	    minute = currentTime.get(Calendar.MINUTE);
+		Dateshow.setText(year+"-"+month+"-"+day);
+		Timeshow.setText(hour+":"+minute);	
 	}
 }

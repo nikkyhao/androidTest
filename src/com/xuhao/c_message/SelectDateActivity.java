@@ -54,9 +54,7 @@ public class SelectDateActivity extends Activity{
 		year=c.get(Calendar.YEAR);
 		month=c.get(Calendar.MONTH);
 		day=c.get(Calendar.DAY_OF_MONTH);
-		
 		cal.setOnDateChangeListener(new OnDateChangeListener() {
-			
 			@Override
 			public void onSelectedDayChange(CalendarView arg0, int arg1, int arg2,
 					int arg3) {
