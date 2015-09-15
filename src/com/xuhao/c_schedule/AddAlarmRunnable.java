@@ -40,8 +40,12 @@ public class AddAlarmRunnable implements Runnable {
 	PendingIntent pi = PendingIntent.getActivity(activity, 0, intent, 0);
 	Iterator<Messages> iterator = messages.iterator();
 	while (iterator.hasNext()) {
+	    Messages msg = iterator.next();
+	    if (msg.isSaved()==true) {
+		continue;
+	    }
+	    String date = msg.getExecute_Date().getDate();
 	    Calendar c = Calendar.getInstance();
-	    String date = iterator.next().getExecute_Date().getDate();
 	    int minute = DateUtil.getMinute(date);
 		int hour = DateUtil.getHour(date);
 		int day = DateUtil.getDay(date);
@@ -54,6 +58,8 @@ public class AddAlarmRunnable implements Runnable {
 			"year:"+year);
 	    c.set(year,month,day,hour,minute);
 	    aManager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pi);
+	    msg.setSaved(true);
+	    msg.update(activity);
 	    Message message = new Message();
 	    message.obj = date;
 	    handler.sendMessage(message);
