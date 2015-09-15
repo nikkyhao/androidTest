@@ -36,4 +36,13 @@ public class Messages extends BmobObject{
     private BmobDate  execute_Date;
     private String content;
     private String groupId;
+    private String senderName;
+
+    public String getSenderName() {
+        return senderName;
+    }
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
+
 }

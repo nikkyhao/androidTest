@@ -7,6 +7,7 @@ import android.content.Intent;
 import cn.bmob.v3.datatype.BmobDate;
 
 import com.example.androidtestproject.R;
+import com.xuhao.application.MyApplication;
 import com.xuhao.javaBean.Messages;
 import com.xuhao.utility.Util;
 
@@ -33,7 +34,7 @@ public class AddPlansActivity extends Activity{
     ImageView btn_back;
     //日程内容显示框
     EditText contentEditText;
-       
+      MyApplication mApplication = null;
        private int year,month,day,hour,minute;
        private String groupId;
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class AddPlansActivity extends Activity{
 	private void init() {
 		// TODO Auto-generated method stub
 	//	Dateshow.setText("");
+	    mApplication = (MyApplication)getApplication();
 	    	initShowTimeAndDate();
 	    	contentEditText.setText("要干什么呢");
 	    	groupId=getIntent().getStringExtra("groupId");
@@ -95,6 +97,7 @@ public class AddPlansActivity extends Activity{
 			    message.setRelease_date(new BmobDate(new Date()));
 			    message.setContent(contentEditText.getText().toString());
 			    message.setGroupId(groupId);
+			    message.setSenderName(mApplication.getPresentUser().getNickName());
 			    message.save(AddPlansActivity.this);//传到数据库
 			}
 		    }

@@ -22,6 +22,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,8 +108,13 @@ public class ScheduleFragment extends Fragment{
 				arg1= mInflater.inflate(R.layout.schedule_item,null);
 				TextView date=(TextView)arg1.findViewById(R.id.text_show_time);
 				TextView text=(TextView)arg1.findViewById(R.id.title);
+				TextView sender = (TextView)arg1.findViewById(R.id.message_sender);
 				ImageView photo=(ImageView)arg1.findViewById(R.id.image_1);
 				Messages ms=message.get(arg0);
+				String senderString = ms.getSenderName();
+				if(sender!= null){
+				sender.setText(senderString);
+				}
 				date.setText(ms.getExecute_Date().getDate());
 				text.setText(ms.getContent());
 				

@@ -1478,7 +1478,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f090002;
         public static final int action_menu_presenter=0x7f090003;
         public static final int action_mode_close_button=0x7f090024;
-        public static final int action_settings=0x7f0900c0;
+        public static final int action_settings=0x7f0900c1;
         public static final int activity_chooser_view_content=0x7f090025;
         public static final int add_user_photo=0x7f090085;
         public static final int addfriendtogroup_brief=0x7f090087;
@@ -1571,6 +1571,7 @@ containing a value of this type.
         public static final int message_friend_userphoto=0x7f090090;
         public static final int message_layout_timecontainer=0x7f09008c;
         public static final int message_list_listview=0x7f0900ad;
+        public static final int message_sender=0x7f0900bc;
         public static final int message_time=0x7f09008e;
         public static final int message_timestamp_layout=0x7f09008d;
         public static final int message_user_userphoto=0x7f090097;
@@ -1603,7 +1604,7 @@ containing a value of this type.
         public static final int register_password=0x7f090073;
         public static final int register_sex=0x7f090075;
         public static final int register_usertype=0x7f090079;
-        public static final int relative=0x7f0900bf;
+        public static final int relative=0x7f0900c0;
         public static final int rl_user=0x7f090053;
         public static final int search_badge=0x7f090032;
         public static final int search_bar=0x7f090031;
@@ -1628,7 +1629,7 @@ containing a value of this type.
         public static final int stateicon=0x7f0900b6;
         public static final int submit_area=0x7f090039;
         public static final int tabMode=0x7f090008;
-        public static final int text_show_time=0x7f0900be;
+        public static final int text_show_time=0x7f0900bf;
         public static final int timePicker1=0x7f090080;
         public static final int time_show=0x7f090047;
         public static final int title=0x7f09002b;
@@ -1651,7 +1652,7 @@ containing a value of this type.
         public static final int username=0x7f090061;
         public static final int view_0=0x7f0900b9;
         public static final int view_1=0x7f0900ba;
-        public static final int view_2=0x7f0900bc;
+        public static final int view_2=0x7f0900be;
         public static final int withText=0x7f090013;
         public static final int work_fragment_note=0x7f09004a;
         public static final int work_fragment_publish_btn=0x7f09004b;

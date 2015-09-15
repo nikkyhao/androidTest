@@ -721,7 +721,7 @@ int id action_context_bar 0x7f09001d
 int id action_menu_divider 0x7f090002
 int id action_menu_presenter 0x7f090003
 int id action_mode_close_button 0x7f090024
-int id action_settings 0x7f0900c0
+int id action_settings 0x7f0900c1
 int id activity_chooser_view_content 0x7f090025
 int id add_user_photo 0x7f090085
 int id addfriendtogroup_brief 0x7f090087
@@ -814,6 +814,7 @@ int id message_btn_addgroup 0x7f0900aa
 int id message_friend_userphoto 0x7f090090
 int id message_layout_timecontainer 0x7f09008c
 int id message_list_listview 0x7f0900ad
+int id message_sender 0x7f0900bc
 int id message_time 0x7f09008e
 int id message_timestamp_layout 0x7f09008d
 int id message_user_userphoto 0x7f090097
@@ -846,7 +847,7 @@ int id register_next 0x7f09007b
 int id register_password 0x7f090073
 int id register_sex 0x7f090075
 int id register_usertype 0x7f090079
-int id relative 0x7f0900bf
+int id relative 0x7f0900c0
 int id rl_user 0x7f090053
 int id search_badge 0x7f090032
 int id search_bar 0x7f090031
@@ -871,7 +872,7 @@ int id split_action_bar 0x7f09001e
 int id stateicon 0x7f0900b6
 int id submit_area 0x7f090039
 int id tabMode 0x7f090008
-int id text_show_time 0x7f0900be
+int id text_show_time 0x7f0900bf
 int id timePicker1 0x7f090080
 int id time_show 0x7f090047
 int id title 0x7f09002b
@@ -894,7 +895,7 @@ int id user_picture 0x7f0900b2
 int id username 0x7f090061
 int id view_0 0x7f0900b9
 int id view_1 0x7f0900ba
-int id view_2 0x7f0900bc
+int id view_2 0x7f0900be
 int id withText 0x7f090013
 int id work_fragment_note 0x7f09004a
 int id work_fragment_publish_btn 0x7f09004b

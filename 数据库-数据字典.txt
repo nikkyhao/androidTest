@@ -29,6 +29,7 @@ release_date - Date
 execute_Date - Date
 content - String
 group -Pointer<Group>
+senderName -String
 )
 
 -------after refactor------------------------------------

@@ -66,7 +66,6 @@ public class LoginActivity extends Activity {
             	String sqlString = "select * from User where username = '"+accountString+"' and password = '"+passwordString+"' ";
         	BmobQuery<User> query = new BmobQuery<User>();
         	query.doSQLQuery(LoginActivity.this,sqlString, new LogInListener());
-              
             }
         });
         
