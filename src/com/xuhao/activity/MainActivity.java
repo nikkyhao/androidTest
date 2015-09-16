@@ -21,8 +21,11 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
+import cn.bmob.push.BmobPush;
+import cn.bmob.v3.BmobInstallation;
 
 import com.example.androidtestproject.R;
+import com.xuhao.application.MyApplication;
 import com.xuhao.c_friendlist.FriendListFragment;
 import com.xuhao.c_message.MessageFragment;
 import com.xuhao.c_schedule.ScheduleFragment;
@@ -33,7 +36,7 @@ public class MainActivity extends Activity {
 
     protected static final String TAG = "MainActivity";
     private Context mContext;
-    private ImageButton mNews,mConstact,mDeynaimic,mSetting;
+    public ImageButton mNews,mConstact,mDeynaimic,mSetting;
     private View mPopView;
     private View currentButton;
 
@@ -55,6 +58,10 @@ public class MainActivity extends Activity {
         mContext=this;
         FindView();
         init();
+        
+        //BmobPush 的初始化
+        BmobInstallation.getCurrentInstallation(this);
+	BmobPush.startWork(this, MyApplication.APPId);
     }
     public void FindView(){
         mPopView= LayoutInflater.from(mContext).inflate(R.layout.app_exit, null);
@@ -70,7 +77,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 FragmentManager fm=getFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
-                MessageFragment messageFragment=new MessageFragment();
+                MessageFragment messageFragment=new MessageFragment(MainActivity.this);
                 ft.replace(R.id.fl_content, messageFragment,MainActivity.TAG);
                 ft.commit();
                 setButton(v);
@@ -90,10 +97,10 @@ public class MainActivity extends Activity {
         });
         mDeynaimic.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {//这个是个人中心
+            public void onClick(View v) {//这个是日程
                 FragmentManager fm=getFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
-                ScheduleFragment scheduleFragment=new ScheduleFragment();
+                ScheduleFragment scheduleFragment=new ScheduleFragment(MainActivity.this);
                 ft.replace(R.id.fl_content, scheduleFragment,MainActivity.TAG);
                 ft.commit();
                 setButton(v);
@@ -101,7 +108,7 @@ public class MainActivity extends Activity {
         });
         mSetting.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {//这个是日程界面
+            public void onClick(View v) {//这个是个人中心
                 FragmentManager fm=getFragmentManager();
                 FragmentTransaction ft=fm.beginTransaction();
                 UserCenterFragment userCenterFragment=new UserCenterFragment();
@@ -143,5 +150,5 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    
 }

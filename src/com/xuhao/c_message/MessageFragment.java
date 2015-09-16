@@ -30,6 +30,7 @@ import cn.bmob.v3.listener.SQLQueryListener;
 import cn.bmob.v3.listener.SaveListener;
 
 import com.example.androidtestproject.R;
+import com.xuhao.activity.MainActivity;
 import com.xuhao.application.MyApplication;
 import com.xuhao.entity.GroupListEntity;
 import com.xuhao.javaBean.Group;
@@ -57,8 +58,11 @@ public class MessageFragment extends Fragment {
     private TextView btn_addgroup;
     private GroupListEntity chooseMessageEntity;
     private MyApplication mApplication;
+    private MainActivity mainActivity;
     //以下是实体类
-    
+    public MessageFragment(MainActivity mainActivity){
+	this.mainActivity = mainActivity;
+    }
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -12,6 +12,7 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SQLQueryListener;
 
 import com.example.androidtestproject.R;
+import com.xuhao.activity.MainActivity;
 import com.xuhao.application.MyApplication;
 import com.xuhao.javaBean.Messages;
 import com.xuhao.javaBean.User;
@@ -43,7 +44,12 @@ public class ScheduleFragment extends Fragment {
     private ListView mSchedule;
     private List<Messages> messages;
     private MyApplication mApplication;
-
+    private MainActivity mainActivity;
+    public ScheduleFragment(MainActivity mainActivity) {
+	// TODO Auto-generated constructor stub
+	this.mainActivity = mainActivity;
+	
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	    Bundle savedInstanceState) {

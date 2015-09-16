@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import cn.bmob.v3.BmobPushManager;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
@@ -57,6 +58,9 @@ public class ChatActivity extends Activity {
 	
 	private String groupId ;//分组的唯一标号，是Group的objectId
 	
+	//BmobPush
+	BmobPushManager bmobPushManager ;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,6 +72,7 @@ public class ChatActivity extends Activity {
 		groupId = intent.getStringExtra("groupId");
 		Log.d("present group ID",groupId);
 		chatList = new ArrayList<ChatEntity>();
+		bmobPushManager = new BmobPushManager(this);
 		initViews();
 		initEvents();
 		findMessageOfGroup(groupId);
@@ -87,12 +92,12 @@ public class ChatActivity extends Activity {
 
 	protected void initEvents() {
 		sendButton.setOnClickListener(new OnClickListener() {
+		    //设置点击发送按钮的监听事件
 			public void onClick(View v) {
 				String content = inputEdit.getText().toString();
 				inputEdit.setText("");
 				ChatEntity chatMessage = new ChatEntity();
 				chatMessage.setContent(content);
-				
 				chatMessage.setReceiverId(12345);//这里应该是根据点击的界面确定，先设上一个值
 				chatMessage.setMessageType(ChatEntity.SEND);
 				Date date = new Date();
@@ -102,6 +107,7 @@ public class ChatActivity extends Activity {
 				chatList.add(chatMessage);
 				chatMessageAdapter = new ChatMessageAdapter(ChatActivity.this,chatList);
 				chatMessageListView.setAdapter(chatMessageAdapter);
+				bmobPushManager.pushMessageAll(content);
 			}
 		});
 		backButtonImageView.setOnClickListener(new OnClickListener() {

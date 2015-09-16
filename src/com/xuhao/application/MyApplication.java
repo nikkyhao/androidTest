@@ -5,14 +5,20 @@ import java.util.List;
 import com.xuhao.javaBean.Group;
 import com.xuhao.javaBean.Messages;
 import com.xuhao.javaBean.User;
+import com.xuhao.utility.Util;
 
+import cn.bmob.push.BmobPush;
+import cn.bmob.push.PushConstants;
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobInstallation;
 import android.app.Application;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.Window;
 
 public class MyApplication extends Application {
+    public static String APPId = "6fd393e552ed1d8dc51dbccf1236cc32";
+    
     private User presentUser = null;
     private List<User> FriendList = null;// 存放此用户所有好友信息
     private List<Bitmap> bmp_list = null;// 存放用户好友的头像
@@ -32,8 +38,8 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
 	super.onCreate();
-	Bmob.initialize(this, "6fd393e552ed1d8dc51dbccf1236cc32");// 在一个总的application
-								  // 中进行初始化
+	Bmob.initialize(this, APPId);// 在一个总的application 中进行初始化
+	
     }
 
     public List<Group> getGroupList() {

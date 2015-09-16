@@ -8,7 +8,7 @@ public class ChatEntity implements Serializable{
 	private int senderId;
 	private int receiverId;
 	private String sendDate;
-	private int messageType;
+	private int messageType;//发送还是接收
 	private String content;
 	public int getSenderId() {
 		return senderId;
