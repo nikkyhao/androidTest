@@ -6,7 +6,7 @@ import java.util.List;
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.listener.SaveListener;
 
-import com.example.androidtestproject.R;
+import com.xuhao.R;
 import com.xuhao.application.MyApplication;
 import com.xuhao.javaBean.Group;
 import com.xuhao.javaBean.GroupRelation;

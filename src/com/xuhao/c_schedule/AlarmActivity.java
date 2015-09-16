@@ -1,6 +1,6 @@
 package com.xuhao.c_schedule;
 
-import com.example.androidtestproject.R;
+import com.xuhao.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;

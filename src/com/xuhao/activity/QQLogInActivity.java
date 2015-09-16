@@ -13,9 +13,9 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SQLQueryListener;
 import cn.bmob.v3.listener.SaveListener;
 
-import com.example.androidtestproject.R;
-import com.example.androidtestproject.R.id;
-import com.example.androidtestproject.R.layout;
+import com.xuhao.R;
+import com.xuhao.R.id;
+import com.xuhao.R.layout;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.auth.QQToken;
 import com.tencent.tauth.IUiListener;

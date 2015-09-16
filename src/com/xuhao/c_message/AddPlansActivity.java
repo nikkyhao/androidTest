@@ -8,7 +8,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import cn.bmob.v3.datatype.BmobDate;
 
-import com.example.androidtestproject.R;
+import com.xuhao.R;
 import com.xuhao.application.MyApplication;
 import com.xuhao.javaBean.Messages;
 import com.xuhao.utility.Util;

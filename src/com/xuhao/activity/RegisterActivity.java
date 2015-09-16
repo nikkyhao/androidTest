@@ -7,7 +7,7 @@ import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.InitListener;
 import cn.bmob.v3.listener.SaveListener;
 
-import com.example.androidtestproject.R;
+import com.xuhao.R;
 import com.xuhao.javaBean.User;
 
 import android.app.Activity;

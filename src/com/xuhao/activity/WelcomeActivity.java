@@ -7,7 +7,7 @@ import java.util.Date;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.datatype.BmobDate;
 
-import com.example.androidtestproject.R;
+import com.xuhao.R;
 import com.xuhao.javaBean.Messages;
 import com.xuhao.utility.SpUtil;
 import com.xuhao.utility.Util;

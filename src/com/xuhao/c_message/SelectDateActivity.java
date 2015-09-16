@@ -3,7 +3,7 @@ package com.xuhao.c_message;
 
 import java.util.Calendar;
 
-import com.example.androidtestproject.R;
+import com.xuhao.R;
 
 import android.app.Activity;
 import android.content.Intent;

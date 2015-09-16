@@ -22,7 +22,7 @@ import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SQLQueryListener;
 
-import com.example.androidtestproject.R;
+import com.xuhao.R;
 import com.xuhao.application.MyApplication;
 import com.xuhao.javaBean.*;
 import com.xuhao.utility.Util;

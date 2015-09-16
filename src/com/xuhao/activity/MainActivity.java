@@ -24,7 +24,7 @@ import android.widget.Toast;
 import cn.bmob.push.BmobPush;
 import cn.bmob.v3.BmobInstallation;
 
-import com.example.androidtestproject.R;
+import com.xuhao.R;
 import com.xuhao.application.MyApplication;
 import com.xuhao.c_friendlist.FriendListFragment;
 import com.xuhao.c_message.MessageFragment;
