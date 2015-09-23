@@ -127,12 +127,12 @@
             </intent-filter>
         </receiver>
         
-        
-        <receiver android:name="com.xuhao.push.MyPushMessageReceiver">
+      
+       <!--  <receiver android:name="com.xuhao.push.MyPushMessageReceiver">
             <intent-filter >
                 <action android:name="cn.bmob.push.action.MESSAGE"/>
             </intent-filter>
-        </receiver>
+        </receiver>--> 
         <!-- BmobPush end -->
     </application>
 

@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cn.bmob.push.PushConstants;
 import cn.bmob.v3.BmobPushManager;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobQueryResult;
@@ -18,8 +22,10 @@ import com.xuhao.javaBean.Messages;
 import com.xuhao.utility.Util;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -41,8 +47,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.xuhao.push.*;
 
-public class ChatActivity extends Activity {
+public class ChatActivity extends Activity implements MyPushMessageReceiver.ReceiveMessageInterface{
 	private TextView title;
 	private int friendId;
 	private String friendName;
@@ -52,14 +59,41 @@ public class ChatActivity extends Activity {
 	private ImageButton addPlanButton;
 	private EditText inputEdit;
 	private List<ChatEntity> chatList;
-	private Handler handler;
 	private ImageView backButtonImageView;
 	private MyApplication mApplication;
 	
 	private String groupId ;//分组的唯一标号，是Group的objectId
+	//用于处理消息接收
+	private Handler handler = new Handler(){//
+	    @Override
+		public void handleMessage(Message msg) {
+		
+		
+		}
+	    
+	};
 	
 	//BmobPush
 	BmobPushManager bmobPushManager ;
+	public void receiveMessage(String content){
+	    ChatEntity chatMessage = new ChatEntity();
+		try {
+		    chatMessage.setContent(new JSONObject(content).getString("alert"));
+		} catch (JSONException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+		chatMessage.setReceiverId(12345);//这里应该是根据点击的界面确定，先设上一个值
+		chatMessage.setMessageType(ChatEntity.RECEIVE);
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd hh:mm:ss");
+		String sendTime = sdf.format(date);
+		chatMessage.setSendTime(sendTime);
+		chatList.add(chatMessage);
+		chatMessageAdapter = new ChatMessageAdapter(ChatActivity.this,chatList);
+		chatMessageListView.setAdapter(chatMessageAdapter);
+		chatMessageListView.setSelection(chatList.size());
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +107,11 @@ public class ChatActivity extends Activity {
 		Log.d("present group ID",groupId);
 		chatList = new ArrayList<ChatEntity>();
 		bmobPushManager = new BmobPushManager(this);
+		MyPushMessageReceiver receiver = new MyPushMessageReceiver(ChatActivity.this);
+		IntentFilter intentFilter = new IntentFilter();
+	        intentFilter.addAction("cn.bmob.push.action.MESSAGE");
+		registerReceiver(receiver, intentFilter);
+		Util.showToast(this, "broadcast已设置");
 		initViews();
 		initEvents();
 		findMessageOfGroup(groupId);
@@ -107,6 +146,7 @@ public class ChatActivity extends Activity {
 				chatList.add(chatMessage);
 				chatMessageAdapter = new ChatMessageAdapter(ChatActivity.this,chatList);
 				chatMessageListView.setAdapter(chatMessageAdapter);
+				chatMessageListView.setSelection(chatList.size());
 				bmobPushManager.pushMessageAll(content);
 			}
 		});
@@ -229,6 +269,7 @@ public class ChatActivity extends Activity {
     	Toast toast = Toast.makeText(this, s, Toast.LENGTH_SHORT);
     	toast.show();
         }
+
 }
 
 
