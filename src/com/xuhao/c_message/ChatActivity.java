@@ -75,7 +75,8 @@ public class ChatActivity extends Activity implements MyPushMessageReceiver.Rece
 	
 	//BmobPush
 	BmobPushManager bmobPushManager ;
-	public void receiveMessage(String content){
+	public void receiveMessage(String content,String senderId){
+	    if(senderId == mApplication.getPresentUser().getObjectId()) return;
 	    ChatEntity chatMessage = new ChatEntity();
 		try {
 		    chatMessage.setContent(new JSONObject(content).getString("alert"));

@@ -31,6 +31,11 @@ import android.widget.TextView;
 public class UserCenterFragment extends Fragment{
     ImageView portraitView ;
     TextView nickNameTextView;
+    TextView schoolTextView;
+    TextView majorTextView;
+    TextView genderTextView;
+    TextView identityTextView;
+    TextView descriptionTextView;
     View mBaseView;
     Context mContent;
     private Context mcontext;
@@ -49,8 +54,14 @@ public class UserCenterFragment extends Fragment{
     private void findView(){
 	portraitView = (ImageView)mBaseView.findViewById(R.id.my_picture);
 	nickNameTextView = (TextView)mBaseView.findViewById(R.id.personal_info_nick_name);
+	schoolTextView = (TextView)mBaseView.findViewById(R.id.school);
+	majorTextView = (TextView)mBaseView.findViewById(R.id.major);
+	genderTextView = (TextView)mBaseView.findViewById(R.id.gender);
+	identityTextView = (TextView)mBaseView.findViewById(R.id.identity);
+	descriptionTextView = (TextView)mBaseView.findViewById(R.id.description);
 	mApplication = (MyApplication)getActivity().getApplication();
 	mContent = getActivity();
+	
     } 
     
     Bitmap portraitBitmap;
@@ -80,7 +91,17 @@ public class UserCenterFragment extends Fragment{
 	}.start();
 	
 	String nickName = mApplication.getPresentUser().getNickName();
+	String school = mApplication.getPresentUser().getSchool();
+	String major = mApplication.getPresentUser().getMajor();
+	String gender = mApplication.getPresentUser().getGender();
+	String identity = mApplication.getPresentUser().getIdentity();
+	String description = mApplication.getPresentUser().getDescription();
 	nickNameTextView.setText(nickName);
+	schoolTextView.setText(school);
+	majorTextView.setText(major);
+	genderTextView.setText(gender);
+	identityTextView.setText(identity);
+	descriptionTextView.setText(description);
     }
     
     
