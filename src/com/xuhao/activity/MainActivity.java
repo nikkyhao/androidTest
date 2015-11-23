@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
         init();
         
         //BmobPush 的初始化
-        BmobInstallation.getCurrentInstallation(this);
+        BmobInstallation.getCurrentInstallation(this).save();;
 	BmobPush.startWork(this, MyApplication.APPId);
     }
     public void FindView(){

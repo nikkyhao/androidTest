@@ -76,7 +76,7 @@ public class ChatActivity extends Activity implements MyPushMessageReceiver.Rece
 	//BmobPush
 	BmobPushManager bmobPushManager ;
 	public void receiveMessage(String content,String senderId){
-	    if(senderId == mApplication.getPresentUser().getObjectId()) return;
+	    if(senderId == mApplication.getPresentUser().getObjectId()) return;//自己不能收到自己的消息
 	    ChatEntity chatMessage = new ChatEntity();
 		try {
 		    chatMessage.setContent(new JSONObject(content).getString("alert"));
@@ -111,7 +111,7 @@ public class ChatActivity extends Activity implements MyPushMessageReceiver.Rece
 		MyPushMessageReceiver receiver = new MyPushMessageReceiver(ChatActivity.this);
 		IntentFilter intentFilter = new IntentFilter();
 	        intentFilter.addAction("cn.bmob.push.action.MESSAGE");
-		registerReceiver(receiver, intentFilter);
+		registerReceiver(receiver, intentFilter);//由于没有在menifest中注册，所以只能在这里注册了
 		Util.showToast(this, "broadcast已设置");
 		initViews();
 		initEvents();
