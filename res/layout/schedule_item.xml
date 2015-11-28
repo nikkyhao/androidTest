@@ -53,7 +53,7 @@
         android:layout_centerVertical="true"  
         android:layout_marginLeft="5dp"
         android:layout_below="@+id/view_0"  
-        android:src="@drawable/channel_qq" />  
+        android:src="@drawable/login_default_avatar_min" />  
         
      <RelativeLayout 
         android:layout_width="fill_parent"  

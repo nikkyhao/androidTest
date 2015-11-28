@@ -71,18 +71,6 @@ public class ScheduleFragment extends Fragment {
 
     private void init() {
 	getMessages();
-	// TODO Auto-generated method stub
-	// messages=new ArrayList<Messages>();
-	// Messages ms1=new Messages();
-	// Messages ms2=new Messages();
-	// ms1.setContent("跟舍友吃羊肉串");
-	// ms1.setExecute_Date(new BmobDate(new Date(2015-1900, 8, 13, 21,0)));
-	// ms2.setContent("叫董景磊写代码");
-	// ms2.setExecute_Date(new BmobDate(new Date(2015-1900,8,13,21,0)));
-	// messages.add(ms1);
-	// messages.add(ms2);
-	// ScheduleAdapter adapter=new ScheduleAdapter(mContext,messages);
-	// mSchedule.setAdapter(adapter);
     }
 
     class ScheduleAdapter extends BaseAdapter {
@@ -125,6 +113,9 @@ public class ScheduleFragment extends Fragment {
 	    Messages ms = message.get(arg0);
 	    String senderString = ms.getSenderName();
 	    if (sender != null) {
+		if (senderString.equals(mApplication.getPresentUser().getNickName())) {
+		    senderString = "自己";
+		}//如果是自己发的会在通知栏上显示自己
 		sender.setText(senderString);
 	    }
 	    date.setText(ms.getExecute_Date().getDate());

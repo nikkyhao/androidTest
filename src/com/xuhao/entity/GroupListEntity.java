@@ -15,6 +15,7 @@ public class GroupListEntity {
 	private String content;
 	private int messageType;
 	private String sendTime;
+	private String createTime;
 	private String name;
 	private String groupId;
     public String getGroupId() {
@@ -23,11 +24,12 @@ public class GroupListEntity {
 	public void setGroupId(String groupIdString) {
 		this.groupId = groupIdString;
 	}
-	public GroupListEntity(String name,String content,String sendTime,String groupId){
+	public GroupListEntity(String name,String content,String sendTime,String createtime,String groupId){
 		this.name=name;
 		this.content=content;
 		this.sendTime=sendTime;
 		this.groupId = groupId;
+		this.createTime = createtime;
 	}
 	public String getName() {
 		return name;
@@ -85,6 +87,12 @@ public class GroupListEntity {
 
 	public void setMessageType(int messageType) {
 		this.messageType = messageType;
+	}
+	public String getCreateTime() {
+	    return createTime;
+	}
+	public void setCreateTime(String createTimeString) {
+	    this.createTime = createTimeString;
 	}
 
 }

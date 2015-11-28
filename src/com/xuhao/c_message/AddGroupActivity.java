@@ -219,7 +219,7 @@ public class AddGroupActivity extends Activity{
 			StringBuilder string = new StringBuilder();
 			for(int i =0;i<choosenFriendList.size();i++){
 				User user = choosenFriendList.get(i);
-			string.append(user.getNickName()+"、");
+			string.append(user.getNickName()+" ");
 			}
 			string.append(mApplication.getPresentUser().getNickName()+"的分组");
 			return string;

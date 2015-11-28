@@ -109,15 +109,15 @@ public class MessageFragment extends Fragment {
                     }
                 });
         btn_addgroup.setOnClickListener(new AddGroupListner() );
-        if(mApplication.isGroupListChanged){
+        if(mApplication.isGroupListChanged){//如果数据更改过则要重新获取一次
         getGroupList();
         mApplication.isGroupListChanged = false;
-        }else if(mApplication.getGroupList()!=null){
+        }else if(mApplication.getGroupList()!=null){//如果远程数据库那边没有更改过那直接就把现有的放上了
         	List<Group> grouplist =mApplication.getGroupList();
         	 mMessageEntityList=new ArrayList<GroupListEntity>();
        		 for(int i =0;i<grouplist.size();i++){
        			 Group current=grouplist.get(i);
-       			 mMessageEntityList.add(new GroupListEntity(current.getName(),current.getName(),current.getCreatedAt(),current.getObjectId()));
+       			 mMessageEntityList.add(new GroupListEntity(current.getName(),current.getName(),current.getUpdatedAt(),current.getCreatedAt(),current.getObjectId()));
        		 	}
        		 adapter = new FriendMessageAdapter(mContext, mMessageEntityList);
              mMessageListView.setAdapter(adapter);
@@ -151,33 +151,34 @@ public class MessageFragment extends Fragment {
             TextView nameView;
             TextView unReadCountView;
             TextView sendTimeView;
-            TextView contentView;
+            TextView createTimeView;
             GroupListEntity message = mMessageEntities.get(position);
             Integer senderId = message.getSenderId();
             String name = message.getName();
+            //原数据
             Bitmap photo=null;
             int messageType = message.getMessageType();
             String sendTime = message.getSendTime();
             int unReadCount = message.getUnReadCount();
-            String content = message.getContent();
+            String createTime = message.getCreateTime();
+            //初始化各个view
             convertView = mInflater.inflate(R.layout.fragment_message_item,null);
             avatarView = (ImageView) convertView.findViewById(R.id.user_photo);
             nameView = (TextView) convertView.findViewById(R.id.user_name);
-            contentView = (TextView) convertView.findViewById(R.id.user_message);
+            createTimeView = (TextView) convertView.findViewById(R.id.user_message);
             unReadCountView = (TextView) convertView
                     .findViewById(R.id.unread_message_count);
             sendTimeView = (TextView) convertView.findViewById(R.id.send_time);
+            //为各个view赴上元素值
             nameView.setText(name);
-            sendTimeView.setText(sendTime);
+            createTimeView.setText("创建于:"+createTime.substring(0, 11));
+            sendTimeView.setText(sendTime.substring(11, sendTime.length()));
             // System.out.println(messageType + "message类型");
-
-            contentView.setText(content);
             return convertView;
         }
     }
     
     class AddGroupListner implements View.OnClickListener{
-
 		@Override
 		public void onClick(View v) {
 		    Intent intent=new Intent(mContext,AddGroupActivity.class);
@@ -198,7 +199,7 @@ public class MessageFragment extends Fragment {
        		 mMessageEntityList=new ArrayList<GroupListEntity>();
        		 for(int i =0;i<grouplist.size();i++){
        			 Group current=grouplist.get(i);
-       			 mMessageEntityList.add(new GroupListEntity(current.getName(),current.getName(),current.getCreatedAt(),current.getObjectId()));
+       			 mMessageEntityList.add(new GroupListEntity(current.getName(),current.getName(),current.getUpdatedAt(),current.getCreatedAt(),current.getObjectId()));
        		 	}
        		 adapter = new FriendMessageAdapter(mContext, mMessageEntityList);
              mMessageListView.setAdapter(adapter);
@@ -236,7 +237,7 @@ public class MessageFragment extends Fragment {
 	        	 mMessageEntityList=new ArrayList<GroupListEntity>();
 	       		 for(int i =0;i<grouplist.size();i++){
 	       			 Group current=grouplist.get(i);
-	       			 mMessageEntityList.add(new GroupListEntity(current.getName(),current.getName(),current.getCreatedAt(),current.getObjectId()));
+	       			 mMessageEntityList.add(new GroupListEntity(current.getName(),current.getName(),current.getUpdatedAt(),current.getCreatedAt(),current.getObjectId()));
 	       		 	}
 	       		 adapter = new FriendMessageAdapter(mContext, mMessageEntityList);
 	             mMessageListView.setAdapter(adapter);
@@ -250,7 +251,7 @@ public class MessageFragment extends Fragment {
 	        	 mMessageEntityList=new ArrayList<GroupListEntity>();
 	       		 for(int i =0;i<grouplist.size();i++){
 	       			 Group current=grouplist.get(i);
-	       			 mMessageEntityList.add(new GroupListEntity(current.getName(),current.getName(),current.getCreatedAt(),current.getObjectId()));
+	       			 mMessageEntityList.add(new GroupListEntity(current.getName(),current.getName(),current.getUpdatedAt(),current.getCreatedAt(),current.getObjectId()));
 	       		 	}
 	       		 adapter = new FriendMessageAdapter(mContext, mMessageEntityList);
 	       		 mMessageListView.setAdapter(adapter);

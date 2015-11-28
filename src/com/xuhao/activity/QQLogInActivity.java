@@ -65,10 +65,10 @@ public class QQLogInActivity extends Activity {
 	setContentView(R.layout.activity_qq_login);
 	mApplication = (MyApplication) getApplication();
 	userLogo = (ImageView) findViewById(R.id.QQimage);
-	openidTextView = (TextView) findViewById(R.id.openidcontent);
+//	openidTextView = (TextView) findViewById(R.id.openidcontent);
 	nicknameTextView = (TextView) findViewById(R.id.nicknamecontent);
-	genderTextView = (TextView) findViewById(R.id.gendercontent);
-	logButton = (Button) findViewById(R.id.Login);
+//	genderTextView = (TextView) findViewById(R.id.gendercontent);
+	logButton = (Button) findViewById(R.id.login);
 	addLogButtonListener();
 	LogIn();
     }

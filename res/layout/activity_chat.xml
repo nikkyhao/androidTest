@@ -17,12 +17,13 @@
 
         <TextView
             android:id="@+id/chat_title_title"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textColor="@android:color/white"
-            android:text=""
-            android:textSize="20sp" />
+            android:singleLine="true"
+            android:text="标题"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/btn_addgroup_create"
