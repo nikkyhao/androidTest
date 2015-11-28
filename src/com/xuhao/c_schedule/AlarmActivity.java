@@ -23,7 +23,7 @@ public class AlarmActivity extends Activity{
 	
 	//获得响应的Message对象
 	Bundle bundle = getIntent().getExtras();
-	Messages message = (Messages)bundle.getSerializable("message");
+	final Messages message = (Messages)bundle.getSerializable("message");
 	// 创建一个对话框
 	new AlertDialog.Builder(AlarmActivity.this).setTitle("闹钟")
 		.setMessage("别忘了：\n"+message.getContent())
@@ -35,9 +35,11 @@ public class AlarmActivity extends Activity{
 				// 停止音乐
 				//alarmMusic.stop();
 				// 结束该Activity
+			    message.delete(AlarmActivity.this);//在闹钟响完后删除
 				AlarmActivity.this.finish();
 			}
 		}).show();
+	
 	
     }
 
