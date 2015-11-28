@@ -33,7 +33,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:layout_marginRight="10dp"
-            android:text="添加"
+            android:text=""
             android:textColor="@android:color/white"
             android:textSize="16sp" />
     </RelativeLayout>
