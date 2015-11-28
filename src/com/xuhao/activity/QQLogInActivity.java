@@ -25,6 +25,7 @@ import com.xuhao.application.MyApplication;
 import com.xuhao.javaBean.User;
 import com.xuhao.utility.Util;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -41,21 +42,28 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 //这个文件处理头像的那个部分还是有问题
 public class QQLogInActivity extends Activity {
     MyApplication mApplication = null;
-
-    // QQ头像
-    Bitmap bitmap = null;
+   
+    
     Button logButton = null;
     ImageView userLogo = null;
+    TextView usernameTextView = null;
+    RadioGroup gender,usertype = null;
+    RadioButton maleButton,femaleButton = null;
+    
     TextView openidTextView = null;
-    TextView nicknameTextView = null;
-    TextView genderTextView = null;
     private Tencent mTencent;
-    public String openidString, nicknameString, genderString, 
+
+    //下面是用户信息
+    Bitmap bitmap = null;//用户头像
+    public String openidString, nicknameString,usernameString, genderString, 
+    
     portraitURL="http://file.bmob.cn/M01/AA/F2/oYYBAFW8RoSATpIEAAAkoWxDSBc961.jpg";
 
     @Override
@@ -64,17 +72,21 @@ public class QQLogInActivity extends Activity {
 	this.requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
 	setContentView(R.layout.activity_qq_login);
 	mApplication = (MyApplication) getApplication();
-	userLogo = (ImageView) findViewById(R.id.QQimage);
-//	openidTextView = (TextView) findViewById(R.id.openidcontent);
-	nicknameTextView = (TextView) findViewById(R.id.nicknamecontent);
-//	genderTextView = (TextView) findViewById(R.id.gendercontent);
-	logButton = (Button) findViewById(R.id.login);
+	userLogo = (ImageView) findViewById(R.id.QQimage);//qq头像显示框
+	usernameTextView = (TextView) findViewById(R.id.usernamecontent);//用户名输入框，作为登录的凭据
+	gender = (RadioGroup)findViewById(R.id.register_sex);//性别选择框
+	usertype = (RadioGroup)findViewById(R.id.register_usertype);//用户身份选择框
+	logButton = (Button) findViewById(R.id.login);//登录按钮
+	maleButton = (RadioButton)findViewById(R.id.sex_male);
+	femaleButton = (RadioButton)findViewById(R.id.sex_female);
+	
+	openidTextView = (TextView)findViewById(R.id.openid);//显示openid，测试用的
 	addLogButtonListener();
 	LogIn();
+	QQLogIn();
     }
 
     public void LogIn() {
-	System.out.println("Login Button");
 	String mAppid = "1104708623"; // 第一个参数就是上面所说的申请的APPID，第二个是全局的Context上下文，这句话实现了调用QQ登录
 	mTencent = Tencent.createInstance(mAppid, getApplicationContext());
 	/**
@@ -123,6 +135,14 @@ public class QQLogInActivity extends Activity {
 		public void onComplete(final Object response) {
 		    // TODO Auto-generated method stub
 		    Log.e("QQ", "---------------111111" + response.toString());
+		    //初始化nickname、头像、openid
+		    JSONObject object = (JSONObject)response;
+			try {
+			    nicknameString = object.getString("nickname");
+			    genderString = object.getString("gender");
+			} catch (JSONException e) {
+			    e.printStackTrace();
+			}
 		    Message msg = new Message();
 		    msg.obj = response;
 		    msg.what = 0;
@@ -137,16 +157,15 @@ public class QQLogInActivity extends Activity {
 			    // TODO Auto-generated method stub
 			    JSONObject json = (JSONObject) response;
 			    try {
-				portraitURL = json.getString("figureurl_qq_2");
+				portraitURL = json.getString("figureurl_qq_2");//下载用户头像，小头像
+				Log.i("figureqq2", portraitURL);
 				bitmap = Util.getbitmap(portraitURL);
-				Log.i("figureqq1", portraitURL);
 			    } catch (org.json.JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			    }
 			    Message msg = new Message();
 			    msg.obj = bitmap;
-			    msg.what = 1;
+			    msg.what = 1;//1代表图片
 			    mHandler.sendMessage(msg);
 			}
 		    }.start();
@@ -177,28 +196,15 @@ public class QQLogInActivity extends Activity {
 
 	@Override
 	public void handleMessage(Message msg) {
-	    if (msg.what == 0) {
-		JSONObject response = (JSONObject) msg.obj;
-		if (response.has("nickname")) {
-		    try {
-			nicknameString = response.getString("nickname");
-			nicknameTextView.setText(nicknameString);
-		    } catch (org.json.JSONException e) {
-			e.printStackTrace();
-		    }
-		    Log.e("QQ", "nickname" + nicknameString);
+	    if (msg.what == 0) {//文字部分
+		if(genderString.equals("男")){
+		    maleButton.setChecked(true);
+		}else if (genderString.equals("女")) {
+		    maleButton.setChecked(true);
 		}
-		if (response.has("gender")) {
-		    try {
-			genderString = response.getString("gender");
-			genderTextView.setText(genderString);
-		    } catch (org.json.JSONException e) {
-			e.printStackTrace();
-		    }
-		    Log.e("QQ", "gender:" + genderString);
-
-		}
-	    } else if (msg.what == 1) {
+	    
+	    }
+	   else if (msg.what == 1) {
 		Bitmap bitmap = (Bitmap) msg.obj;
 		userLogo.setImageBitmap(bitmap);
 
@@ -211,7 +217,35 @@ public class QQLogInActivity extends Activity {
 	logButton.setOnClickListener(new OnClickListener() {
 	    @Override
 	    public void onClick(View v) {
-		QQLogIn();
+		RegisterAndLogin();
+	    }
+
+	    private void RegisterAndLogin() {
+		// TODO Auto-generated method stub
+		// 查询成功，说明是第一次登录
+		    Util.showToast(QQLogInActivity.this, "用户第一次登录");
+		    User user = new User();
+		    File file = null;
+		    file = new File("http://file.bmob.cn/M02/C2/C5/oYYBAFZZlDyAIQrTAABIeLd9tDI941.png");
+		    Log.d("BmobFile","path："+file.getPath()+"name"+file.getName());
+		    user.setQqOpenId(openidString);
+		    user.setUserName(usernameTextView.getText().toString());
+		    user.setSex(genderString);
+		    user.setNickName(nicknameString);
+		    user.save(QQLogInActivity.this, new SaveListener() {
+			@Override
+			public void onSuccess() {
+				Util.showToast(QQLogInActivity.this, "添加成功");
+			}
+			@Override
+			public void onFailure(int arg0, String arg1) {
+			    Util.showToast(QQLogInActivity.this, "添加失败，错误信息："+arg1);
+			}
+		});
+		    mApplication.setPresentUser(user);
+		    Intent intent = new Intent(QQLogInActivity.this,
+			    MainActivity.class);
+		    startActivity(intent);// 进入主界面
 	    }
 	});
     }
@@ -227,50 +261,19 @@ public class QQLogInActivity extends Activity {
 	@Override
 	public void done(BmobQueryResult<User> result, BmobException e) {
 	    List<User> user_list = null;
-	    if (e == null) {// 查询成功，说明以前QQ登录过
-		// showToast("查询成功");
+	    if (e == null) {
 		user_list = (List<User>) result.getResults();
-		if (user_list != null && user_list.size() > 0) {// 查询成功，返回结果不空
+		if (user_list != null && user_list.size() > 0) {//// 查询成功，说明以前QQ登录过
 		    // 将当前用户作为全局变量存储起来
+		    Util.showToast(QQLogInActivity.this, "老用户");
 		    mApplication.setPresentUser(user_list.get(0));
 		    Util.showToast(QQLogInActivity.this, "登录成功,用户："
 			    + user_list.get(0).getUserName());
 		    Intent intent = new Intent(QQLogInActivity.this,
 			    MainActivity.class);
 		    startActivity(intent);// 进入主界面
-		} else {// 查询成功，说明是第一次登录
-		    Util.showToast(QQLogInActivity.this, "用户第一次登录");
-		    User user = new User();
-		    File file = null;
-			file = new File("http://file.bmob.cn/M01/AA/F2/oYYBAFW8RoSATpIEAAAkoWxDSBc961.jpg");
-//		        if(!file.exists()){//判断文件是否存在  
-//		            try {  
-//		                file.createNewFile();  //创建文件  
-//		                  
-//		            } catch (IOException e1) {  
-//		                e.printStackTrace();  
-//		            }  }
-		    Log.d("BmobFile","path："+file.getPath()+"name"+file.getName());
-		    Util.showToast(QQLogInActivity.this,"path："+file.getPath()+"name"+file.getName() );
-		    user.setPortrait(new BmobFile(file));
-		    user.setQqOpenId(openidString);
-		    user.setUserName(openidString);
-		    user.setSex(genderString);
-		    user.setNickName(nicknameString);
-		    user.save(QQLogInActivity.this, new SaveListener() {
-			@Override
-			public void onSuccess() {
-				Util.showToast(QQLogInActivity.this, "添加成功");
-			}
-			@Override
-			public void onFailure(int arg0, String arg1) {
-			    Util.showToast(QQLogInActivity.this, "错误信息："+arg1);
-			}
-		});
-		    mApplication.setPresentUser(user);
-		    Intent intent = new Intent(QQLogInActivity.this,
-			    MainActivity.class);
-		    startActivity(intent);// 进入主界面
+		} else {//新用户
+		    Util.showToast(QQLogInActivity.this, "新用户");
 		}
 	    } else {// 查询失败，出现异常
 		Util.showToast(QQLogInActivity.this, "错误码:" + e.getErrorCode()

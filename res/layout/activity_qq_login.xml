@@ -31,17 +31,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="昵称"
+                android:text="用户名"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/nicknamecontent"
+                android:id="@+id/usernamecontent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
                 android:background="@null"
                 android:gravity="left|center"
-                android:singleLine="true" />
+                android:singleLine="true" 
+                android:hint="用户名将作为您以后登录的凭据"
+                />
         </LinearLayout>
 
         <View
@@ -138,7 +140,18 @@
             android:layout_marginRight="25dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/loginbutton_background"
-            android:text="@string/login"
+            android:text="注册并登录"
             android:textColor="@android:color/white" />
 
+
+     <TextView
+         android:id="@+id/openid"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/login"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="40dp"
+         android:ems="10"
+         >
+     </TextView>
 </RelativeLayout>
