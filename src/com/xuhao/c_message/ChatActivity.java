@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -74,16 +75,16 @@ public class ChatActivity extends Activity implements MyPushMessageReceiver.Rece
 	};
 	
 	//BmobPush
-	BmobPushManager bmobPushManager ;
+	BmobPushManager bmobPushManager;
 	public void receiveMessage(String content,String senderId){
-	    if(senderId == mApplication.getPresentUser().getObjectId()) return;//自己不能收到自己的消息
+	 // 自己不能收到自己的消息
+	    System.out.println("senderId:"+senderId);
+	    System.out.println("myId:"+mApplication.getPresentUser().getObjectId());
+	if (senderId.equals(mApplication.getPresentUser().getObjectId())) {
+	    return;
+	}
 	    ChatEntity chatMessage = new ChatEntity();
-		try {
-		    chatMessage.setContent(new JSONObject(content).getString("alert"));
-		} catch (JSONException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
-		}
+		chatMessage.setContent(content);
 		chatMessage.setReceiverId(12345);//这里应该是根据点击的界面确定，先设上一个值
 		chatMessage.setMessageType(ChatEntity.RECEIVE);
 		Date date = new Date();
@@ -148,7 +149,10 @@ public class ChatActivity extends Activity implements MyPushMessageReceiver.Rece
 				chatMessageAdapter = new ChatMessageAdapter(ChatActivity.this,chatList);
 				chatMessageListView.setAdapter(chatMessageAdapter);
 				chatMessageListView.setSelection(chatList.size());
-				bmobPushManager.pushMessageAll(content);
+				String senderId = ((MyApplication)ChatActivity.this.getApplication()).getPresentUser().getObjectId();
+				String jsonString = "{\"content\":"+content+",\"senderId\":"+senderId+"}";
+				bmobPushManager.pushMessageAll(jsonString);
+				System.out.println("发送的jsonString："+jsonString);
 			}
 		});
 		backButtonImageView.setOnClickListener(new OnClickListener() {

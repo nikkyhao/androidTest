@@ -36,7 +36,6 @@ senderName -String
 
 User
 (
-
 username - String
 password - String 
 qqOpenID -String 
@@ -48,10 +47,7 @@ nickName - String
 identity - String (ѧ������ʦ��
 portrait - BmobFile
 description - String
-
 friendRelation - Relation<User>
-
-
 )
 
 Group

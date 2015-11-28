@@ -128,11 +128,13 @@
         </receiver>
         
       
-       <!--  <receiver android:name="com.xuhao.push.MyPushMessageReceiver">
+       <!--  之所以注释掉的原因是在代码里动态注册
+       <receiver android:name="com.xuhao.push.MyPushMessageReceiver">
             <intent-filter >
                 <action android:name="cn.bmob.push.action.MESSAGE"/>
             </intent-filter>
         </receiver>--> 
+        
         <!-- BmobPush end -->
     </application>
 

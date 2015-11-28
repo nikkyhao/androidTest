@@ -79,7 +79,7 @@ public class MessageFragment extends Fragment {
      
     }
     private void init() {
-        //设置标题栏
+        //设置标题栏 
     	mApplication = (MyApplication)(getActivity().getApplication());
         mMessageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
