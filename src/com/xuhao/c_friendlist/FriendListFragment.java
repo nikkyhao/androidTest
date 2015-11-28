@@ -3,8 +3,11 @@ package com.xuhao.c_friendlist;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -172,7 +175,13 @@ public class FriendListFragment extends Fragment{
        		  List<Bitmap> bmp_list = new ArrayList<Bitmap>();
        		  while(iterator.hasNext()){
        		      //注意这里如果服务器上照片为空的话会报空指针错
-       		      bmp_list.add(Util.getbitmap(iterator.next().getPortrait().getFileUrl(mContext)));
+       		      try {
+       			  bmp_list.add(Util.getbitmap(iterator.next().getPortrait().getFileUrl(mContext)));
+		    } catch (NullPointerException e ) {
+			Resources res=getResources();
+			Bitmap bmp=BitmapFactory.decodeResource(res, R.drawable.login_default_avatar_min);
+			bmp_list.add(bmp);
+		    }
        		  }
        		  mApplication.setBmp_list(bmp_list);
                       Message msg = new Message();
