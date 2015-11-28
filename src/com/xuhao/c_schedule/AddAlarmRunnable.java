@@ -35,14 +35,12 @@ public class AddAlarmRunnable implements Runnable {
 
     @Override
     public void run() {
-	Intent intent = new Intent(activity, AlarmActivity.class);
-	// 创建PendingIntent对象
-	PendingIntent pi = PendingIntent.getActivity(activity, 0, intent, 0);
+	
 	Iterator<Messages> iterator = messages.iterator();
 	while (iterator.hasNext()) {
 	    Messages msg = iterator.next();
 	    if (msg.isSaved()==true) {
-		continue;
+		continue;//如果这个Message已经被设置过闹钟了那就跳过下面的代码
 	    }
 	    String date = msg.getExecute_Date().getDate();
 	    Calendar c = Calendar.getInstance();
@@ -57,6 +55,11 @@ public class AddAlarmRunnable implements Runnable {
 			"month"+month+
 			"year:"+year);
 	    c.set(year,month,day,hour,minute);
+	    Intent intent = new Intent(activity, AlarmActivity.class);
+	    //为intent中添加相关信息
+	    intent.putExtra("message", msg);
+		// 创建PendingIntent对象
+	    PendingIntent pi = PendingIntent.getActivity(activity, 0, intent, 0);
 	    aManager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pi);
 	    msg.setSaved(true);
 	    msg.update(activity);

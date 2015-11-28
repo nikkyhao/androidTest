@@ -150,6 +150,7 @@ public class ScheduleFragment extends Fragment {
 		    ScheduleAdapter adapter = new ScheduleAdapter(mContext,
 			    messages);
 		    mSchedule.setAdapter(adapter);
+		    mSchedule.setSelection(messages.size());
 		    mApplication.setMessageList(messages);
 		    //新开一个线程设置闹钟
 		    new Thread(new AddAlarmRunnable(messages, mContext,alarmHandler)).start();

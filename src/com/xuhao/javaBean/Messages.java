@@ -1,10 +1,12 @@
 package com.xuhao.javaBean;
 
+import java.io.Serializable;
+
 import android.R.string;
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobDate;
 
-public class Messages extends BmobObject{
+public class Messages extends BmobObject implements Serializable{
 	public static final int  RECEIVE = 0;
 	public static final int SEND = 1;
     
@@ -37,7 +39,7 @@ public class Messages extends BmobObject{
     private String content;
     private String groupId;
     private String senderName;
-    private Boolean saved = false;
+    private Boolean saved = false;//用于区分已经设置过闹钟了还是没有设置过
     public String getSenderName() {
         return senderName;
     }
