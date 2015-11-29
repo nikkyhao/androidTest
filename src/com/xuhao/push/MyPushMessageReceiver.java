@@ -30,8 +30,8 @@ public class MyPushMessageReceiver extends BroadcastReceiver {
 	if (intent.getAction().equals(PushConstants.ACTION_MESSAGE)) {
 	    String jsonString = intent
 		    .getStringExtra(PushConstants.EXTRA_PUSH_MESSAGE_STRING);
-	    Toast.makeText(context, "收到消息啦：" + jsonString, Toast.LENGTH_SHORT)
-		    .show();
+//	    Toast.makeText(context, "收到消息啦：" + jsonString, Toast.LENGTH_SHORT)
+//		    .show();
 	    String content = "消息没收到唉";
 	    String senderId = "不知道是谁发送的";
 	    try {

@@ -10,6 +10,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.datatype.BmobQueryResult;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SQLQueryListener;
 import cn.bmob.v3.listener.SaveListener;
 
@@ -83,7 +84,7 @@ public class QQLogInActivity extends Activity {
 	openidTextView = (TextView)findViewById(R.id.openid);//显示openid，测试用的
 	addLogButtonListener();
 	LogIn();
-	QQLogIn();
+	
     }
 
     public void LogIn() {
@@ -115,9 +116,7 @@ public class QQLogInActivity extends Activity {
 		openidString = ((JSONObject) response).getString("openid");// 这个是用户的唯一标识
 		Log.e("QQ", "openid:" + openidString);
 		openidTextView.setText(openidString);
-		// access_token= ((JSONObject)
-		// response).getString("access_token"); //expires_in =
-		// ((JSONObject) response).getString("expires_in");
+		QQLogIn();
 	    } catch (org.json.JSONException e) {// 这里注意！，有两个包都有这个Exception类
 		e.printStackTrace();
 	    }
@@ -223,19 +222,19 @@ public class QQLogInActivity extends Activity {
 	    private void RegisterAndLogin() {
 		// TODO Auto-generated method stub
 		// 查询成功，说明是第一次登录
-		    Util.showToast(QQLogInActivity.this, "用户第一次登录");
 		    User user = new User();
-		    File file = null;
-		    file = new File("http://file.bmob.cn/M02/C2/C5/oYYBAFZZlDyAIQrTAABIeLd9tDI941.png");
-		    Log.d("BmobFile","path："+file.getPath()+"name"+file.getName());
-		    user.setQqOpenId(openidString);
+		    //为了方便不放头像了
+//		    File file = null;
+//		    file = new File("http://file.bmob.cn/M02/C2/C5/oYYBAFZZlDyAIQrTAABIeLd9tDI941.png");
+//		    Log.d("BmobFile","path："+file.getPath()+"name"+file.getName());
+		    user.setqqOpenID(openidString);
 		    user.setUserName(usernameTextView.getText().toString());
 		    user.setSex(genderString);
 		    user.setNickName(nicknameString);
 		    user.save(QQLogInActivity.this, new SaveListener() {
 			@Override
 			public void onSuccess() {
-				Util.showToast(QQLogInActivity.this, "添加成功");
+				Util.showToast(QQLogInActivity.this, "登录成功");
 			}
 			@Override
 			public void onFailure(int arg0, String arg1) {
@@ -251,10 +250,37 @@ public class QQLogInActivity extends Activity {
     }
 
     private void QQLogIn() {
-	String sqlString = "select * from User where qqOpenID ='"
-		+ openidString + "'";
 	BmobQuery<User> query = new BmobQuery<User>();
-	query.doSQLQuery(QQLogInActivity.this, sqlString, new LogInListener());
+	query.addWhereEqualTo("qqOpenID", openidString);
+	query.setLimit(50);
+	query.findObjects(this,new FindListener<User>() {
+	    @Override
+	    public void onSuccess(List<User> arg0) {
+		    List<User> user_list = arg0;
+//		    Util.showToast(QQLogInActivity.this, "查询成功，共"+user_list.size()+"条数据");
+			if (user_list != null && user_list.size() > 0) {//// 查询成功，说明以前QQ登录过
+			    // 将当前用户作为全局变量存储起来
+			    Util.showToast(QQLogInActivity.this, "老用户");
+			    mApplication.setPresentUser(user_list.get(0));
+			    Util.showToast(QQLogInActivity.this, "登录成功,用户："
+				    + user_list.get(0).getUserName());
+			    Intent intent = new Intent(QQLogInActivity.this,
+				    MainActivity.class);
+			    startActivity(intent);// 进入主界面
+			} else {//新用户
+			    Util.showToast(QQLogInActivity.this, "新用户");
+			}
+		    }
+	    
+	    @Override
+	    public void onError(int arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	    }
+	});
+//	String sqlString = "select * from User where qqOpenID ='"+ openidString + "'";
+//	BmobQuery<User> query = new BmobQuery<User>();
+//	query.doSQLQuery(QQLogInActivity.this, sqlString, new LogInListener());
     }
 
     class LogInListener extends SQLQueryListener<User> {
@@ -265,7 +291,7 @@ public class QQLogInActivity extends Activity {
 		user_list = (List<User>) result.getResults();
 		if (user_list != null && user_list.size() > 0) {//// 查询成功，说明以前QQ登录过
 		    // 将当前用户作为全局变量存储起来
-		    Util.showToast(QQLogInActivity.this, "老用户");
+		    Util.showToast(QQLogInActivity.this, "老用户，请注册");
 		    mApplication.setPresentUser(user_list.get(0));
 		    Util.showToast(QQLogInActivity.this, "登录成功,用户："
 			    + user_list.get(0).getUserName());

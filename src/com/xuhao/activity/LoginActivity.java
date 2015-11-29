@@ -121,7 +121,7 @@ public class LoginActivity extends Activity {
 //以下是一些常用方法
     
     public void showToast(String s){
- 	Toast toast = Toast.makeText(this, s, Toast.LENGTH_SHORT);
+ 	Toast toast = Toast.makeText(this, s, Toast.LENGTH_LONG);
  	toast.show();
      }
 }

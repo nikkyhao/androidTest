@@ -92,7 +92,7 @@ public class FriendListFragment extends Fragment{
         addFriendImageView.setOnClickListener(new addFriendButtonListener());
         if(mApplication.isFriendListChanged){
         getFriendRelation();
-        showToast("从网络获取好友列表");
+//        showToast("从网络获取好友列表");
         mApplication.isFriendListChanged = false;
         }
         else if(mApplication.getFriendList()!=null){//如果不是第一次的话就从mApplication中获取
@@ -192,7 +192,7 @@ public class FriendListFragment extends Fragment{
               }.start();
    		}
    		else {//查询成功，返回结果为空
-   		    showToast("查询成功，返回结果为空");
+//   		    showToast("查询成功，返回结果为空");
    		}
    	    }
    	    else {//查询失败，出现异常
@@ -229,7 +229,7 @@ public class FriendListFragment extends Fragment{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	 if(mApplication.isFriendListChanged){
 	        getFriendRelation();
-	        showToast("从网络获取好友列表");
+//	        showToast("从网络获取好友列表");
 	        mApplication.isFriendListChanged = false;
 	        }
 	        else{//如果不是第一次的话就从mApplication中获取

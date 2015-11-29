@@ -35,12 +35,6 @@ public class User extends BmobObject{
     public void setGender(String gender) {
         this.gender = gender;
     }
-    public String getQqOpenId() {
-        return qqOpenID;
-    }
-    public void setQqOpenId(String qqOpenID) {
-        this.qqOpenID = qqOpenID;
-    }
     public String getUserName() {
         return username;
     }
@@ -87,5 +81,11 @@ public class User extends BmobObject{
     }
     public void setPortrait(BmobFile portrait) {
         this.portrait = portrait;
+    }
+    public String getqqOpenID() {
+        return qqOpenID;
+    }
+    public void setqqOpenID(String qqOpenID) {
+        this.qqOpenID = qqOpenID;
     }
 }

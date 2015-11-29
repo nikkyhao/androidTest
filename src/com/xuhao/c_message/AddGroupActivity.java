@@ -198,11 +198,11 @@ public class AddGroupActivity extends Activity{
 			    	new BmobObject().insertBatch(mContext, batch, new SaveListener() {
 			    	    @Override
 			    	    public void onSuccess() {
-			    	    	showToast("批量添加成功");
+//			    	    	showToast("批量添加成功");
 			    	    }
 			    	    @Override
 			    	    public void onFailure(int code, String msg) {
-			    	    	showToast("addFailure："+msg);
+			    	    	showToast("添加失败："+msg);
 			    	    }
 			    	});
 			    	mApplication.isGroupListChanged = true;//让GroupList显示的时候需要再从网络上获取一遍

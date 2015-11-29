@@ -85,7 +85,7 @@ public class MessageFragment extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
-                    	showToast("item:"+position+"was clicked");
+//                    	showToast("item:"+position+"was clicked");
                         chooseMessageEntity = mMessageEntityList.get(position);
                         chooseMessageEntity.setUnReadCount(0);
                         adapter.notifyDataSetChanged();
@@ -194,7 +194,7 @@ public class MessageFragment extends Fragment {
        	    if(e==null){//查询成功
        		grouplist = result.getResults();
        		if(grouplist!=null && grouplist.size()>0){//查询成功，结果不为空
-       			showToast("group查询成功，结果不为空");
+//       			showToast("group查询成功，结果不为空");
        			mApplication.setGroupList(grouplist);
        		 mMessageEntityList=new ArrayList<GroupListEntity>();
        		 for(int i =0;i<grouplist.size();i++){
@@ -205,7 +205,7 @@ public class MessageFragment extends Fragment {
              mMessageListView.setAdapter(adapter);
        		 }
        		else {//查询成功，返回结果为空
-       		    showToast("查询成功，返回结果为空");
+//       		    showToast("查询成功，返回结果为空");
        		}
        	    }
        	    else {//查询失败，出现异常

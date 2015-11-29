@@ -13,7 +13,9 @@ import com.xuhao.utility.Util;
 import android.app.Application;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -83,8 +85,9 @@ public class UserCenterFragment extends Fragment{
 		try{
 		 portraitBitmap= Util.getbitmap(mApplication.getPresentUser().getPortrait().getFileUrl(mContent));
 		}catch(NullPointerException exception){
-		    //Util.showToast(mContent, "现在还没头像");
-		    interrupt();
+		    Resources res=getResources();
+			Bitmap bmp=BitmapFactory.decodeResource(res, R.drawable.login_default_avatar_min);
+			portraitBitmap = bmp;
 		}
 		 handler.sendEmptyMessage(0);
 	    }

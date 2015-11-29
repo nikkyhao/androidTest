@@ -147,7 +147,7 @@ public class ScheduleFragment extends Fragment {
 		    new Thread(new AddAlarmRunnable(messages, mContext,alarmHandler)).start();
 		} else {// 查询成功，返回结果为空
 
-		    Util.showToast(mContext, "查询成功，返回结果为空");
+//		    Util.showToast(mContext, "查询成功，返回结果为空");
 		}
 	    } else {// 查询失败，出现异常
 		Util.showToast(mContext,

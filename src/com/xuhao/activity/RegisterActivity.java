@@ -92,12 +92,12 @@ public class RegisterActivity extends Activity{
 			user.save(RegisterActivity.this, new SaveListener() {
 				@Override
 				public void onSuccess() {
-					Toast toast = Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT);
+					Toast toast = Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_LONG);
 				 	toast.show();
 				}
 				@Override
 				public void onFailure(int arg0, String arg1) {
-					Toast toast = Toast.makeText(RegisterActivity.this, "注册失败"+arg1, Toast.LENGTH_SHORT);
+					Toast toast = Toast.makeText(RegisterActivity.this, "注册失败"+arg1, Toast.LENGTH_LONG);
 				 	toast.show();
 				}
 			});

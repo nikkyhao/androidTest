@@ -113,7 +113,7 @@ public class ChatActivity extends Activity implements MyPushMessageReceiver.Rece
 		IntentFilter intentFilter = new IntentFilter();
 	        intentFilter.addAction("cn.bmob.push.action.MESSAGE");
 		registerReceiver(receiver, intentFilter);//由于没有在menifest中注册，所以只能在这里注册了
-		Util.showToast(this, "broadcast已设置");
+//		Util.showToast(this, "broadcast已设置");
 		initViews();
 		initEvents();
 		findMessageOfGroup(groupId);
@@ -253,13 +253,13 @@ public class ChatActivity extends Activity implements MyPushMessageReceiver.Rece
 			  if(e==null){//查询成功
 		       		messageList = result.getResults();
 		       		if(messageList!=null && messageList.size()>0){//查询成功，结果不为空
-		       			showToast("Message查询成功，结果不为空");
+//		       			showToast("Message查询成功，结果不为空");
 		       			for(int i = 0;i<messageList.size();i++){
 		           			Log.d("messagelist", messageList.get(i).getContent());
 		           			}
 		       		}
 		       		else {//查询成功，返回结果为空
-		       		    showToast("查询成功，返回结果为空");
+//		       		    showToast("查询成功，返回结果为空");
 		       		}
 		       	    }
 		       	    else {//查询失败，出现异常
